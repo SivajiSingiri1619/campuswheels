@@ -1,0 +1,355 @@
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+    #intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    #intro-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    video#intro-video {
+      width: 100%;
+      height: auto;
+      max-height: 100vh;
+      object-fit: cover;
+      
+    }
+
+    /* Main homepage content styles */
+    #main-page {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    #main-page.reveal {
+      display: block;
+      opacity: 1;
+    }
+
+    header {
+  width: 100%;
+  min-height: 100px;
+  background-color:white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0px 10px 30px 5px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: slideDown 1s ease-in-out;
+  opacity: 1;
+  gap: 10px;
+}
+
+#logo {
+  height: 80px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  animation: fadeIn 2s ease;
+}
+
+.title1, .title2 {
+  font-size: 2.2rem;
+  color: #fff;
+  display: inline-block;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.title1 {
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  color: orangered;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-right: 12px;
+  font-weight: 600;
+  animation: fadeInRight 1.5s ease-in;
+}
+
+.title2 {
+  color: black;
+  font-weight: 700;
+  animation: fadeInLeft 1.5s ease-in;
+}
+
+/* Responsive Header for Tablets and Mobiles */
+@media (max-width: 992px) {
+  #logo {
+    height: 60px;
+    top: 15px;
+    left: 15px;
+  }
+
+  .title1, .title2 {
+    font-size: 1.8rem;
+  }
+
+  header {
+    padding-top: 60px;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  #logo {
+    height: 50px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .title1, .title2 {
+    font-size: 1.4rem;
+    display: block;
+    margin: 5px auto;
+  }
+
+  header {
+    padding: 10px;
+    padding-top: 70px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+    .notification-bar {
+      background-color:white;
+      opacity: 0.9;
+      text-align: center;
+    }
+
+    .notification-bar marquee {
+      font-size:small;
+      color: black;
+    }
+
+    main {
+      min-height: calc(100vh - 120px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.7);
+    }
+
+    .login-container, .login-container-driver, .login-container-admin {
+      width: 500px;
+      height: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease;
+    }
+
+    .driver, .admin {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #driverlogo, #adminlogo {
+      height: 120px;
+      margin-bottom: 12px;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    #driverlogo:hover, #adminlogo:hover {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    .button2 {
+      padding: 10px 22px;
+      background: linear-gradient(to right, #000, #444);
+      color: white;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .button2:hover {
+      background: linear-gradient(to right, #ff8c00, #e65100);
+      transform: scale(1.08);
+    }
+
+    .login-container-driver {
+      position: absolute;
+      background-image: url(./dataset/driverimg.png);
+      background-size: cover;
+      background-position: center;
+      display: none;
+    }
+
+    .login-container-admin {
+      position: absolute;
+      background-image: url(./dataset/adminimg.png);
+      background-size: cover;
+      background-position: center;
+      display: none;
+    }
+
+    .login-box {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 260px;
+      height: 280px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      animation: slideInLeft 1s ease;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    .login-box input {
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      background-color: #fefefe;
+      transition: all 0.3s ease;
+    }
+
+    .login-box input:focus {
+      border-color: #ffa500;
+      outline: none;
+      box-shadow: 0 0 5px #ffa50080;
+    }
+
+    .login-box button {
+      width: 60%;
+      padding: 8px;
+      background-color: #ffa500;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background-color: orangered;
+    }
+
+    .login-box p {
+      font-size: 13px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .login-back {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background-color: #ff8800;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-style: italic;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .login-back:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-80px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInRight {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeInLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-200px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .login-container, .login-container-driver, .login-container-admin {
+        width: 90%;
+        flex-direction: row;
+      }
+      .login-box {
+        position: relative;
+        top: 10px;
+        left: 0;
+      }
+    }

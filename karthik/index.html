@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Wheels Portal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div id="intro-screen">
+    <video id="intro-video" autoplay muted playsinline>
+      <source src="./dataset/introvideo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div id="main-page">
+      <header>
+        <img id="logo" src="./dataset/RN wheels logo.png" alt="logo">
+        <span class="title1">Campus</span>
+        <span class="title2">Wheels</span>
+      </header>
+
+
+      <main>
+        <video autoplay muted loop id="bg-video">
+          <source src="./dataset/WhatsApp Video 2025-07-29 at 15.33.56_4f56e191.mp4" type="video/mp4">
+        </video>
+
+        <div class="login-container">
+          <div class="driver">
+            <img id="driverlogo" src="./dataset/driverlogo.png" alt="Driver Logo">
+            <div onclick="driversignin()" class="button2">Driver</div>
+          </div>
+
+          <div class="admin">
+            <img id="adminlogo" src="./dataset/adminlogo.png" alt="Admin Logo">
+            <div onclick="adminsignin()" class="button2">Admin</div>
+          </div>
+        </div>
+
+        <div class="login-container-driver">
+          <div class="login-box">
+            <h2>Driver Login</h2>
+            <form>
+              <input type="text" placeholder="Driver ID" required />
+              <input type="password" placeholder="Password" required />
+              <button type="submit">Login</button>
+            </form>
+            <p>Only for authorized drivers</p>
+          </div>
+          <div onclick="goback()" class="login-back">Back</div>
+        </div>
+
+        <div class="login-container-admin">
+          <div class="login-box">
+            <h2>Admin Login</h2>
+            <form>
+              <input type="text" placeholder="Admin ID" required />
+              <input type="password" placeholder="Password" required />
+              <button type="submit">Login</button>
+            </form>
+            <p>Only for Admin</p>
+          </div>
+          <div onclick="goback()" class="login-back">Back</div>
+        </div>
+      </main>
+  </div>
+
+  <script>
+    const video = document.getElementById("intro-video");
+    const introScreen = document.getElementById("intro-screen");
+    const mainPage = document.getElementById("main-page");
+
+    function transitionToMain() {
+      introScreen.classList.add("fade-out");
+
+      // After fade-out animation ends
+      setTimeout(() => {
+        introScreen.style.display = "none";
+        mainPage.classList.add("reveal");
+      },100); // matches fade-out transition time
+    }
+    video.onended = transitionToMain;
+    setTimeout(transitionToMain, 4000);
+
+
+
+    function driversignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-driver").style.display = "flex";
+    }
+    function adminsignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "flex";
+    }
+    function goback(){
+      document.querySelector(".login-container").style.display = "flex";
+      document.querySelector(".login-container-driver").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "none";
+    }
+  </script>
+</body>
+</html>
