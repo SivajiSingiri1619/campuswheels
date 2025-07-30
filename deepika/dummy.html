@@ -15,12 +15,12 @@
     <a href="#">Leaves</a>
     <a href="#">Buses</a>
     <a href="#">Settings</a>
-    <a href="#">Logout</a>
+    <a href="#" onclick="if(confirm('Do you want to logout?')) window.location.href = 'login.html'">Logout</a>
   </div>
 
   <div class="main-content">
     <header>
-      <h1 id="AdminWelcome">Welcome, Krishna</h1>
+      <h1 id="AdminWelcome"></h1>
       <p>Today is <span id="date"></span></p>
     </header>
 
@@ -32,27 +32,27 @@
       <div class="profile-right">
         <div class="info">
           <label>Admin ID</label>
-          <div class="static-value" id="adminId">ADM1023958</div>
+          <div class="static-value" id="adminId"></div>
         </div>
         <div class="info">
           <label>Email</label>
-          <div class="static-value" id="email">admin@company.com</div>
+          <div class="static-value" id="Adminemail"></div>
         </div>
         <div class="info">
           <label>Role</label>
-          <div class="static-value" id="role">Administrator</div>
+          <div class="static-value" id="Adminrole">Administrator</div>
         </div>
         <div class="info">
           <label>Phone</label>
-          <div class="static-value" id="phone">+91 9876543210</div>
+          <div class="static-value" id="Adminphone">+91 9876543210</div>
         </div>
         <div class="info">
           <label>Date of Joining</label>
-          <div class="static-value" id="joining">July 2020</div>
+          <div class="static-value" id="Adminjoining">July 2020</div>
         </div>
         <div class="info">
           <label>Location</label>
-          <div class="static-value" id="location">Hyderabad, India</div>
+          <div class="static-value" id="Adminlocation">Hyderabad, India</div>
         </div>
       </div>
     </section>
