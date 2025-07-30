@@ -227,7 +227,7 @@ if(DriverLoginButton) {
             localStorage.setItem("loggedInDriverId",driver.driverId);
             loginInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
             setTimeout(() => {
-                window.location.href = "driver_page.html";
+                window.location.href = "../deepika/driver_page.html";
             }, 500);
         }
         else  {
@@ -258,7 +258,7 @@ if(AdminLoginButton){
             localStorage.setItem("loggedInAdminId",admin.adminId);
             loginAdminInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
             setTimeout(() => {
-                window.location.href = "dummy.html";
+                window.location.href = "../nitya/admin4.html";
             }, 500);
         }
         else  {
@@ -283,7 +283,7 @@ function getLoggedInAdmin() {
 if (document.getElementById("DriverHello")) {
   const driver = getLoggedInDriver();
   if (!driver) {
-    window.location.href = "login.html";
+    window.location.href = "../karthik/index.html";
   } else {
     DriverDetails(driver);
     Attendance(driver);
@@ -299,7 +299,7 @@ if (document.getElementById("DriverHello")) {
 if(document.getElementById("AdminWelcome")) {
     const admin = getLoggedInAdmin();
     if(!admin) {
-        window.location.href = "login.html";
+        window.location.href = "../karthik/index.html";
     }
     else {
         AdminDetails(admin);
