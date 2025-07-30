@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Wheels - Driver Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Campus Wheels - Driver Dashboard</h1>
+            <div id="DriverHello"></div>
+            <button class="submit" onclick="if(confirm('Do you want to logout?')) window.location.href = 'login.html';">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </header>
+
+        <section>
+            <h2>Your Profile</h2>
+            <div class="card">
+                <div class="flex-container">
+                    <div style="display: flex; flex-direction: column; align-items: start; gap: 10px;" class="details">
+                        <img src="driver_image.jpg" alt="Driver Profile" class="profile-img">
+                        <div style="text-align: left;">
+                            <h3 class="highlight" style="font-size: 20px; font-weight: bold;" id="driverName"></h3>
+                            <p style="font-size: 14px;" id="driverId"></p>
+                            <p style="font-size: 14px; padding-bottom: 20px;" id="driverLocation"></p>
+                        </div>
+                    </div>
+                       <div id="swap-button" class="swap-present" style="position: relative;">
+                        <div id="attendanceStatus" class="attendance-circle present" style="position: absolute;">P</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Daily Bus Report</h2>
+            <div class="card">
+                <p id="timeStatus" class="status"></p>
+                <form id="dailyEntryForm">
+                    <div>
+                        <label for="busNumber">Bus Number</label>
+                        <input type="text" id="busNumber" placeholder="Enter Bus Number">
+                    </div>
+                    <div>
+                        <label for="startTime">Start Time</label>
+                        <input type="time" id="startTime">
+                    </div>
+                    <div>
+                        <label for="endTime">End Time</label>
+                        <input type="time" id="endTime">
+                    </div>
+                    <div>
+                        <label for="startMeter">Start Meter</label>
+                        <input type="number" id="startMeter" placeholder="Enter Start Meter">
+                    </div>
+                    <div>
+                        <label for="endMeter">End Meter</label>
+                        <input type="number" id="endMeter" placeholder="Enter End Meter">
+                    </div>
+                    <div>
+                        <label for="studentCount">Student Count</label>
+                        <input type="number" id="studentCount" placeholder="Enter Student Count">
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <button type="submit" id="submitEntry" class="submit">
+                            <i class="fas fa-check"></i> Submit Report
+                        </button>
+                        <i id="dailyTick" class="fas fa-check-circle tick-mark"></i>
+                    </div>
+                </form>
+                <div id="entryStatus" class="status"></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Bus Service Report</h2>
+            <div class="card">
+                <form id="serviceForm">
+                    <div>
+                        <label>Service Type</label>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; align-items: center;">
+                            <button type="button" id="fuelBtn" class="fuel">
+                                <i class="fas fa-gas-pump"></i> Fuel
+                            </button>
+                            <button type="button" id="garageBtn" class="garage">
+                                <i class="fas fa-tools"></i> Garage
+                            </button>
+                        </div>
+                        <input type="hidden" id="serviceType" name="serviceType">
+                    </div>
+                    <div id="fuelFields" class="hidden">
+                        <div>
+                            <label for="serviceDate">Date</label>
+                            <input type="date" id="serviceDate">
+                        </div>
+                        <div>
+                            <label for="serviceFuelBus">Bus Number</label>
+                            <input type="number" id="serviceFuelBus" placeholder="Enter Bus Number">
+                        </div>
+                        <div>
+                            <label for="fuelLiters">Liters</label>
+                            <input type="number" id="fuelLiters" placeholder="Enter Liters">
+                        </div>
+                        <div id="serviceFuelSubmit">
+                            <div style="display: flex; align-items: center; justify-content: center;">
+                                <button type="submit" class="submit">
+                                    <i class="fas fa-wrench"></i> Submit Service
+                                </button>
+                                <i id="serviceTick" class="fas fa-check-circle tick-mark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="garageFields" class="hidden">
+                        <div>
+                            <label for="serviceDateGarage">Date</label>
+                            <input type="date" id="serviceDateGarage">
+                        </div>
+                        <div>
+                            <label for="serviceGarageBus">Bus Number</label>
+                            <input type="number" id="serviceGarageBus" placeholder="Enter Bus Number">
+                        </div>
+                        <div id="serviceGarageSubmit">
+                            <div style="display: flex; align-items: center; justify-content: center;">
+                                <button type="submit" class="submit">
+                                    <i class="fas fa-wrench"></i> Submit Service
+                                </button>
+                                <i id="serviceTick" class="fas fa-check-circle tick-mark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+                <div id="serviceStatus" class="status"></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Take a Leave</h2>
+            <div class="card">
+                <p style="font-size: 18px; color: var(--text-color); margin-bottom: 16px;">
+                    Leaves Left: <span style="color: var(--success-color);">3 days</span>
+                </p>
+                <form id="leaveForm">
+                    <div>
+                        <label>Choose a Leave Day</label>
+                        <div id="leaveDates" class="leave-dates grid-container"></div>
+                        <input type="hidden" id="leaveDate" name="leaveDate">
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <button type="submit" class="submit">
+                            <i class="fas fa-calendar-times"></i> Apply Leave
+                        </button>
+                        <i id="leaveTick" class="fas fa-check-circle tick-mark"></i>
+                    </div>
+                </form>
+                <div id="leaveStatus" class="status"></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>This Month Attendance</h2>
+            <div class="card">
+                <div style="text-align: center;">
+                    <p style="font-size: 18px; color: var(--text-color); margin-bottom: 8px;">Attendance: <span id="attendancePercentage" style="color: var(--success-color);"></span></p>
+                    <div style="background-color: var(--border-color); border-radius: 8px; height: 20px; overflow: hidden;">
+                        <div id="attendanceBar" style="background-color: var(--success-color); height: 100%; transition: width 0.5s ease-in-out;"></div>
+                    </div>
+                    <p id="attendanceDays" style="font-size: 20px; color: var(--subtle-text); margin-top: 20px;"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Campus Wheels. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
