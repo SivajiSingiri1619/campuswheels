@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leave Approval Panel</title>
+  <link rel="stylesheet" href="leave.css" />
+</head>
+<body>
+  <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Admin</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="item"><a href="#">Profile</a></li>
+          <li class="item"><a href="#">Service</a></li>
+          <li class="item"><a href="#">Leaves</a></li>
+          <li class="item"><a href="#">Buses</a></li>
+          <li class="item"><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  <div class="container">
+    <h1>Leave Approval</h1>
+
+    <div class="filter">
+      <label for="status-filter">Filter by Status:</label>
+      <select id="status-filter">
+        <option value="All">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+
+      <br><br>
+
+      <label for="from-date">From:</label>
+      <input type="date" id="from-date" />
+
+      <label for="to-date">To:</label>
+      <input type="date" id="to-date" />
+
+      <button id="apply-filters">Apply Filters</button>
+      <button id="reset-filters">Reset Filters</button>
+    </div>
+    
+    <div id="leave-container" class="leave-container">
+      <div class="leave-card1">
+        <h2>Ravi</h2>
+        <span class="leave-date">Leave Date: 2023-10-01</span><br>
+        <span class="status">Status: Pending</span><br>
+        <span class="reason">Reason: Medical Leave</span><br>
+        <span class="requested-at">Requested At: 2023-09-25</span><br>
+        <span class="contact">Contact: 1234567890</span><br><br>
+        <button class="approve-btn" onclick="aprv()">Approve</button>
+        <button class="reject-btn" onclick="rej()">Reject</button>
+      </div>
+      <div class="leave-card2">
+        <h2>John</h2>
+        <span class="leave-date">Leave Date: 2023-10-02</span><br>
+        <span class="status">Status: Approved</span><br>
+        <span class="reason">Reason: Family Emergency</span><br>
+        <span class="requested-at">Requested At: 2023-09-26</span><br>
+        <span class="contact">Contact: 0987654321</span><br><br>
+        <button class="approve-btn" onclick="aprv()">Approve</button>
+        <button class="reject-btn" onclick="rej()">Reject</button>
+      </div>
+      <div class="leave-card3">
+        <h2>Raju</h2>
+        <span class="leave-date">Leave Date: 2023-10-03</span><br>
+        <span class="status">Status: Rejected</span><br>
+        <span class="reason">Reason: Personal Leave</span><br>
+        <span class="requested-at">Requested At: 2023-09-27</span><br>
+        <span class="contact">Contact: 1122334455</span><br><br>
+        <button class="approve-btn" onclick="aprv()">Approve</button>
+        <button class="reject-btn" onclick="rej()">Reject</button>
+      </div>
+    <div id="leave-list" class="leave-list"></div>
+    </div>
+  </div>
+  
+    <!-- <footer class="footer">
+      <p>&copy; 2025 Campus Wheels. All rights reserved.</p>
+    </footer> -->
+
+ <script src="leave.js"></script>
+</body>
+</html>
