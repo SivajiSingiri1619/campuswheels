@@ -439,3 +439,38 @@ if(button){
     dateSpan.textContent = today.toDateString();
     });
 }
+
+const loginPage = document.getElementById("LoginPage");
+if(loginPage) {
+    const video = document.getElementById("intro-video");
+    const introScreen = document.getElementById("intro-screen");
+    const mainPage = document.getElementById("main-page");
+
+    function transitionToMain() {
+      introScreen.classList.add("fade-out");
+
+      // After fade-out animation ends
+      setTimeout(() => {
+        introScreen.style.display = "none";
+        mainPage.classList.add("reveal");
+      },100); // matches fade-out transition time
+    }
+    video.onended = transitionToMain;
+    setTimeout(transitionToMain, 4000);
+
+
+
+    function driversignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-driver").style.display = "flex";
+    }
+    function adminsignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "flex";
+    }
+    function goback(){
+      document.querySelector(".login-container").style.display = "flex";
+      document.querySelector(".login-container-driver").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "none";
+    }
+}
