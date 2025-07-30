@@ -21,15 +21,16 @@ const drivers = [
   { driverId: "DRV20", driverName: "Lokesh", driverBusId: 20, driverLocation: "Hyderabad", status: "Present" }
 ];
 
-const adminUsers = [
-  {adminId: "ADM001", email: "john.doe@example.com", role: "SuperAdmin", phone: "+1-555-123-4567", dateOfJoining: "2022-03-15", location: "New York, USA"},
-  {adminId: "ADM002", email: "jane.smith@example.com", role: "Moderator", phone: "+44-20-7946-0958", dateOfJoining: "2021-07-20", location: "London, UK"},
-  {adminId: "ADM003", email: "ali.khan@example.com", role: "Admin", phone: "+92-300-1234567", dateOfJoining: "2023-01-10", location: "Lahore, Pakistan"},
-  {adminId: "ADM004", email: "maria.garcia@example.com", role: "SuperAdmin", phone: "+34-600-123-456", dateOfJoining: "2020-11-05", location: "Madrid, Spain"},
-  {adminId: "ADM005", email: "li.wei@example.com", role: "Admin", phone: "+86-10-12345678", dateOfJoining: "2022-08-25", location: "Beijing, China"}
+const admins = [
+  {adminId: "ADM001", adminName: "Kiran", email: "john.doe@example.com", role: "SuperAdmin", phone: "+91 5551234567", dateOfJoining: "2022-03-15", location: "New York, USA"},
+  {adminId: "ADM002", adminName: "Ashok", email: "jane.smith@example.com", role: "Moderator", phone: "+91 2079460958", dateOfJoining: "2021-07-20", location: "London, UK"},
+  {adminId: "ADM003", adminName: "Pavan", email: "ali.khan@example.com", role: "Admin", phone: "+91 3001234567", dateOfJoining: "2023-01-10", location: "Lahore, Pakistan"},
+  {adminId: "ADM004", adminName: "Girish", email: "maria.garcia@example.com", role: "SuperAdmin", phone: "+91 600123456", dateOfJoining: "2020-11-05", location: "Madrid, Spain"},
+  {adminId: "ADM005", adminName: "Satish", email: "li.wei@example.com", role: "Admin", phone: "+91 1012345678", dateOfJoining: "2022-08-25", location: "Beijing, China"}
 ];
 
 let driver = null;
+let admin = null;
 function showTick(tickElement) {
     tickElement.style.display = 'inline';
     setTimeout(() => {
@@ -216,32 +217,67 @@ if(DriverLoginButton) {
         loginInvalid.innerHTML = '';
 
         if(!userId || !password){
-            loginInvalid.innerHTML = `<p>Please enter both User ID and Password.</p>`;
+            loginInvalid.innerHTML = `<p style="color: red;">Please enter both User ID and Password.</p>`;
             return;
         }
 
         const driver = drivers.find(driver => driver.driverId === userId);
 
         if(driver && password === 'Aditya'){
-            // loginInvalid.innerHTML = '';
-            // document.getElementsByTagName("form")[0].setAttribute('action', 'driver_page.html');
             localStorage.setItem("loggedInDriverId",driver.driverId);
             loginInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
             setTimeout(() => {
                 window.location.href = "driver_page.html";
-            }, 1000);
+            }, 500);
         }
         else  {
             loginInvalid.innerHTML = "<p style = 'color: red;'>Invalid User ID or Password</p>";
-            // document.getElementsByTagName("form")[0].setAttribute('action', '');
         }
     });
 }
+
+const AdminLoginButton = document.getElementById("adminlogin");
+if(AdminLoginButton){
+    AdminLoginButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const loginAdminInvalid = document.getElementById("LoginAdminInvalid");
+        const AdminId = document.getElementById("LoginAdminId").value.trim();
+        const AdminPassword = document.getElementById("LoginAdminPassword").value.trim();
+
+        loginAdminInvalid.innerHTML = '';
+
+        if(!AdminId || !AdminPassword){
+            loginAdminInvalid.innerHTML = `<p style="color: red;">Please enter both Admin ID and Password.</p>`;
+            return;
+        }
+
+        const admin = admins.find(admin => admin.adminId === AdminId);
+
+        if(admin && AdminPassword === 'Aditya'){
+            localStorage.setItem("loggedInAdminId",admin.adminId);
+            loginAdminInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
+            setTimeout(() => {
+                window.location.href = "dummy.html";
+            }, 500);
+        }
+        else  {
+            loginAdminInvalid.innerHTML = "<p style = 'color: red;'>Invalid User ID or Password</p>";
+        }
+    });
+}
+
 
 function getLoggedInDriver() {
     const id = localStorage.getItem("loggedInDriverId");
     if(!id) return null;
     return drivers.find(driver => driver.driverId === id);
+}
+
+function getLoggedInAdmin() {
+    const id = localStorage.getItem("loggedInAdminId");
+    if(!id) return null;
+    return admins.find(admin => admin.adminId === id);
 }
 
 if (document.getElementById("DriverHello")) {
@@ -258,6 +294,16 @@ if (document.getElementById("DriverHello")) {
     RunAttendance(driver);
     setInterval(() => RunAttendance(driver), 60000);
   }
+}
+
+if(document.getElementById("AdminWelcome")) {
+    const admin = getLoggedInAdmin();
+    if(!admin) {
+        window.location.href = "login.html";
+    }
+    else {
+        AdminDetails(admin);
+    }
 }
 
 function RunAttendance(driver) {
@@ -311,6 +357,17 @@ function DriverDetails(driver) {
   document.getElementById("driverId").innerHTML = `<p>${driver.driverId}</p>`;
   document.getElementById("driverLocation").innerHTML = `<p>${driver.driverLocation}</p>`;
 }
+
+function AdminDetails(admin) {
+    document.getElementById("AdminWelcome").innerText = `Welcome! ${admin.adminName}`;
+    document.getElementById("adminId").innerText = `${admin.adminId}`;
+    document.getElementById("Adminemail").innerText =`${admin.email}`;
+    document.getElementById("Adminrole").innerText = `${admin.role}`;
+    document.getElementById("Adminphone").innerText = `${admin.phone}`;
+    document.getElementById("Adminjoining").innerText = `${admin.dateOfJoining}`;
+    document.getElementById("Adminlocation").innerText = `${admin.location}`;
+}
+
 
 function Attendance(driver) {
     const swapButton = document.getElementById("swap-button");
@@ -381,4 +438,39 @@ if(button){
     const today = new Date();
     dateSpan.textContent = today.toDateString();
     });
+}
+
+const loginPage = document.getElementById("LoginPage");
+if(loginPage) {
+    const video = document.getElementById("intro-video");
+    const introScreen = document.getElementById("intro-screen");
+    const mainPage = document.getElementById("main-page");
+
+    function transitionToMain() {
+      introScreen.classList.add("fade-out");
+
+      // After fade-out animation ends
+      setTimeout(() => {
+        introScreen.style.display = "none";
+        mainPage.classList.add("reveal");
+      },100); // matches fade-out transition time
+    }
+    video.onended = transitionToMain;
+    setTimeout(transitionToMain, 4000);
+
+
+
+    function driversignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-driver").style.display = "flex";
+    }
+    function adminsignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "flex";
+    }
+    function goback(){
+      document.querySelector(".login-container").style.display = "flex";
+      document.querySelector(".login-container-driver").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "none";
+    }
 }

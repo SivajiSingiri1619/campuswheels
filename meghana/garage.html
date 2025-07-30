@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Garage Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    h1 {
+      color: #0d47a1;
+      margin-bottom: 1.5rem;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      color: #1565c0;
+    }
+
+    .Checkk {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    #month {
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    #check {
+      padding: 7px 14px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .card {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #ffffff;
+      border-left: 6px solid #1976d2;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card span {
+      margin-right: 30px;
+      margin-bottom: 10px;
+      color: #0d47a1;
+      font-size: 15px;
+      min-width: 150px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .card {
+        flex-direction: column;
+      }
+
+      .card span {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 20px;
+      }
+
+      .input-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #check {
+        width: 100%;
+      }
+
+      .card span {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back">← Back to Dashboard</a>
+  <h1>Garage Visit Details</h1>
+
+  <div class="Checkk">
+    <div class="input-group">
+      <label for="date">Date:</label>
+      <input type="date" id="date">
+      <button id="check">Check</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <span><strong>Bus:</strong> KA01 AB 1234</span>
+      <span><strong>Date:</strong> 2025-07-01</span>
+      <span><strong>Issue:</strong> Brake Failure</span>
+      <span><strong>Status:</strong> Fixed</span>
+      <span><strong>Remarks:</strong> Brake pads replaced</span>
+    </div>
+
+    <div class="card">
+      <span><strong>Bus:</strong> KA02 CD 4567</span>
+      <span><strong>Date:</strong> 2025-07-03</span>
+      <span><strong>Issue:</strong> Oil Leak</span>
+      <span><strong>Status:</strong> Resolved</span>
+      <span><strong>Remarks:</strong> Oil pipe changed</span>
+    </div>
+  </div>
+  <script src="garage.js"></script>
+</body>
+</html>
