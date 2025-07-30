@@ -79,10 +79,9 @@
 }
 
 .title1, .title2 {
-  font-size: 2.2rem;
   color: #fff;
   display: inline-block;
-  line-height: 1.2;
+  line-height: 0;
   word-break: break-word;
 }
 
@@ -92,14 +91,22 @@
   padding: 10px 14px;
   border-radius: 8px;
   margin-right: 12px;
-  font-weight: 600;
   animation: fadeInRight 1.5s ease-in;
+  font-family: "Ubuntu", sans-serif;
+  font-size:60px;
+  font-weight: bold;
+  font-style: normal;
+  transform: translateX(30px)
 }
 
 .title2 {
   color: black;
-  font-weight: 700;
   animation: fadeInLeft 1.5s ease-in;
+  font-family: "Playwrite AU QLD", cursive;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 40px;
 }
 
 /* Responsive Header for Tablets and Mobiles */
@@ -318,8 +325,8 @@
     }
 
     @keyframes fadeInRight {
-      from { transform: translateX(100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from { transform: translateX(1000px); opacity: 0; }
+      to { transform: translateX(30px); opacity: 1; }
     }
 
     @keyframes fadeInLeft {
