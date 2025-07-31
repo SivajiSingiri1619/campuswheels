@@ -87,7 +87,7 @@ nav {
 
 .menu-bar {
   width: 250px;
- background-color: var(--black-color);
+ background-color: rgb(23, 23, 23);
   display: flex;
   flex-direction: column;
   color: var(--text-color);
@@ -106,7 +106,9 @@ nav {
   font-size: 1.5rem;
   width: 100%;
   padding: 10px 20px;
-  border-bottom: 0.5px solid navy;
+  background-color: var(--black-color);
+  color:#FFD700;
+  font-family: 'Orbitron'sans-serif;
 }
 
 .close-bar {
@@ -182,7 +184,7 @@ nav {
 
 .count:hover {
   transform: scale(1.05);
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--black-color);
 }
 
 .icon {
@@ -253,6 +255,7 @@ nav {
   background-color: var(--secondary-color);
 }
 
+
 .result {
   width: 100%;
   max-width: 500px;
@@ -261,7 +264,7 @@ nav {
   background: linear-gradient(60deg, white, white, orange);
   border-radius: 12px;
   border: 2px solid var(--accent-color);
-  /* display: none; */
+  display: none;
   color: var(--dark-color);
   padding: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -289,7 +292,7 @@ nav {
 }
 
 .result:hover {
-  border: 2px solid var(--black-color);
+  border: 2px solid var(--secondary-color);
   transform: perspective(1000px) rotateY(0deg) scale(1.05);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
@@ -334,22 +337,44 @@ nav {
 .result div {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
+  width: 100%;
 }
 
-.result div p {
+.result p {
+  display: block;
+  width: 100%;
   font-size: 1rem;
   margin: 0;
+  padding: 5px 0;
   text-align: left;
-  line-height: 1.6;
+  line-height: 1.8;
   color: var(--dark-color);
 }
 
-.result div p strong {
-  color: var(--secondary-color);
+.result p b {
+  color: var(--black-color);
   margin-right: 8px;
   font-weight: 600;
 }
+
+.result-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.result-content p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  width: 100%;
+  text-align: left;
+}
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {
