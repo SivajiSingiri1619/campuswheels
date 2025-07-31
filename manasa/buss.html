@@ -9,21 +9,21 @@
 <body>
 
   
-  <div class="hamburger" onclick="toggleSidebar()">☰</div>
+  <button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2>Admin</h2>
-      <span class="close-btn" onclick="toggleSidebar()">×</span>
+      <button class="close-btn" onclick="toggleSidebar()">✖</button>
     </div>
     <nav class="sidebar-nav">
       <ul>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Drivers</a></li>
-        <li><a href="#">Service</a></li>
-        <li><a href="#">Leaves</a></li>
-        <li><a href="#" class="active">Buses</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="#" class="nav-item">Profile</a></li>
+        <li><a href="#" class="nav-item">Drivers</a></li>
+        <li><a href="#" class="nav-item">Services</a></li>
+        <li><a href="#" class="nav-item">Leaves</a></li>
+        <li><a href="#" class="nav-item active">Buses</a></li>
+        <li><a href="#" class="nav-item">Logout</a></li>
       </ul>
     </nav>
   </div>
