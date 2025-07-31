@@ -29,6 +29,29 @@ const admins = [
   {adminId: "ADM005", adminName: "Satish", email: "li.wei@example.com", role: "Admin", phone: "+91 1012345678", dateOfJoining: "2022-08-25", location: "Beijing, China"}
 ];
 
+window.buses = [
+  { busId: 1, busNo: "AP16AB1001", meterReading: 45210, lastFuelDate: "2025-07-25", lastGarageDate: "2025-07-10", driver: "Ravi", route: "Kakinada - Rajahmundry" },
+  { busId: 2, busNo: "AP16AB1002", meterReading: 46000, lastFuelDate: "2025-07-20", lastGarageDate: "2025-07-05", driver: "Suresh", route: "Rajahmundry - Eluru" },
+  { busId: 3, busNo: "AP16AB1003", meterReading: 43800, lastFuelDate: "2025-07-18", lastGarageDate: "2025-06-30", driver: "Mahesh", route: "Kakinada - Amalapuram" },
+  { busId: 4, busNo: "AP16AB1004", meterReading: 47050, lastFuelDate: "2025-07-22", lastGarageDate: "2025-07-02", driver: "Ramesh", route: "Vijayawada - Guntur" },
+  { busId: 5, busNo: "AP16AB1005", meterReading: 44990, lastFuelDate: "2025-07-21", lastGarageDate: "2025-07-01", driver: "Naresh", route: "Kakinada - Srikakulam" },
+  { busId: 6, busNo: "AP16AB1006", meterReading: 45500, lastFuelDate: "2025-07-20", lastGarageDate: "2025-07-05", driver: "Dinesh", route: "Vizag - Rajahmundry" },
+  { busId: 7, busNo: "AP16AB1007", meterReading: 46200, lastFuelDate: "2025-07-18", lastGarageDate: "2025-07-03", driver: "Harsha", route: "Amalapuram - Kakinada" },
+  { busId: 8, busNo: "AP16AB1008", meterReading: 44300, lastFuelDate: "2025-07-17", lastGarageDate: "2025-06-28", driver: "Vikram", route: "Rajahmundry - Vizag" },
+  { busId: 9, busNo: "AP16AB1009", meterReading: 46010, lastFuelDate: "2025-07-24", lastGarageDate: "2025-07-07", driver: "Sunil", route: "Kakinada - Hyderabad" },
+  { busId: 10, busNo: "AP16AB1010", meterReading: 45350, lastFuelDate: "2025-07-26", lastGarageDate: "2025-07-09", driver: "Srinu", route: "Guntur - Tenali" },
+  { busId: 11, busNo: "AP16AB1011", meterReading: 45700, lastFuelDate: "2025-07-23", lastGarageDate: "2025-07-06", driver: "Kishore", route: "Vijayawada - Eluru" },
+  { busId: 12, busNo: "AP16AB1012", meterReading: 44800, lastFuelDate: "2025-07-19", lastGarageDate: "2025-07-04", driver: "Ajay", route: "Kakinada - Rajahmundry" },
+  { busId: 13, busNo: "AP16AB1013", meterReading: 47000, lastFuelDate: "2025-07-25", lastGarageDate: "2025-07-08", driver: "Chandu", route: "Eluru - Amalapuram" },
+  { busId: 14, busNo: "AP16AB1014", meterReading: 44500, lastFuelDate: "2025-07-22", lastGarageDate: "2025-06-29", driver: "Mohan", route: "Kakinada - Rajahmundry" },
+  { busId: 15, busNo: "AP16AB1015", meterReading: 46600, lastFuelDate: "2025-07-21", lastGarageDate: "2025-07-03", driver: "Raju", route: "Rajahmundry - Kakinada" },
+  { busId: 16, busNo: "AP16AB1016", meterReading: 45550, lastFuelDate: "2025-07-24", lastGarageDate: "2025-07-02", driver: "Kiran", route: "Hyderabad - Kakinada" },
+  { busId: 17, busNo: "AP16AB1017", meterReading: 45100, lastFuelDate: "2025-07-20", lastGarageDate: "2025-07-01", driver: "Naveen", route: "Rajahmundry - Guntur" },
+  { busId: 18, busNo: "AP16AB1018", meterReading: 45900, lastFuelDate: "2025-07-26", lastGarageDate: "2025-07-05", driver: "Ganesh", route: "Vijayawada - Vizag" },
+  { busId: 19, busNo: "AP16AB1019", meterReading: 46500, lastFuelDate: "2025-07-18", lastGarageDate: "2025-06-27", driver: "Teja", route: "Kakinada - Rajahmundry" },
+  { busId: 20, busNo: "AP16AB1020", meterReading: 44200, lastFuelDate: "2025-07-19", lastGarageDate: "2025-07-03", driver: "Lokesh", route: "Rajahmundry - Hyderabad" }
+];
+
 let driver = null;
 let admin = null;
 function showTick(tickElement) {
@@ -90,7 +113,6 @@ const garageFields = document.getElementById('garageFields');
 const serviceDate = document.getElementById('serviceDate');
 const fuelLiters = document.getElementById('fuelLiters');
 const serviceDateGarage = document.getElementById('serviceDateGarage');
-const serviceSubmit = document.getElementById('serviceSubmit');
 
 if(fuelBtn){
     fuelBtn.addEventListener('click', () => {
@@ -139,25 +161,66 @@ if(serviceForm){
         e.preventDefault();
         if (!confirm('Do you want to submit this service report?')) return;
         const serviceType = serviceTypeInput.value;
-        const statusDiv = document.getElementById('serviceStatus');
         const tickMark = document.getElementById('serviceTick');
 
+        const FuelMessage = document.getElementById("serviceFuelMessage");
+        FuelMessage.innerHTML = "";
+
+        const FuelBusNumber = Number(document.getElementById("serviceFuelBus").value.trim());
+        const FuelDate = document.getElementById("serviceFuelDate").value.trim(); 
+        const FuelLiters = document.getElementById("fuelLiters").value.trim();
+
         if (serviceType === 'fuel') {
-            if (serviceDate.value && fuelLiters.value) {
-                statusDiv.innerHTML = `<p style="color: var(--success-color)">Fuel report saved!</p>`;
-                showTick(tickMark);
-            } else {
-                statusDiv.innerHTML = `<p style="color: var(--warning-color)">Please fill all fields</p>`;
+            if (!FuelBusNumber || !FuelDate || !FuelLiters) {
+                FuelMessage.innerHTML = `<p style="color: red; font-size: 18px;">Please fill all the fields</p>`;
+                return;
             }
-        } else if (serviceType === 'garage') {
-            if (serviceDateGarage.value) {
-                statusDiv.innerHTML = `<p style="color: var(--success-color)">Garage report saved!</p>`;
-                showTick(tickMark);
-            } else {
-                statusDiv.innerHTML = `<p style="color: var(--warning-color)">Please select a date</p>`;
+
+            let FuelFound = false;
+            buses.forEach(obj => {
+                if (obj.busId === FuelBusNumber) {
+                    obj.lastFuelDate = FuelDate;
+                    FuelFound = true;
+                }
+            });
+            
+            if (!FuelFound) {
+                FuelMessage.innerHTML = `<p style="color: red; font-size: 18px;">Bus Not Found</p>`;
+                return;
             }
-        } else {
-            statusDiv.innerHTML = `<p style="color: var(--warning-color)">Please select a service type</p>`;
+
+            FuelMessage.innerHTML = `<p style="color: var(--success-color)">Fuel report saved! Fuel date updated successfully!</p>`;
+            showTick(tickMark);
+        } 
+
+        const GarageMessage = document.getElementById("serviceGarageMessage");
+        GarageMessage.innerHTML = "";
+
+        const GarageBusNumber = Number(document.getElementById("serviceGarageBus").value.trim());
+        const GarageDate = document.getElementById("serviceGarageDate").value.trim();
+
+
+        if (serviceType === 'garage') {
+            if(!GarageBusNumber || !GarageDate) {
+                GarageMessage.innerHTML = `<p style="color: red; font-size: 18px;">Please fill all the fields</p>`;
+                return;
+            }
+
+            let GarageFound = false;
+            buses.forEach(obj => {
+                if(obj.busId === GarageBusNumber) {
+                    obj.lastGarageDate = GarageDate;
+                    console.log(`${obj.lastGarageDate}`);
+                    GarageFound = true;
+                }
+            });
+
+            if(!GarageFound) {
+                GarageMessage.innerHTML = `<p style="color: red; font-size: 18px;">Bus Not Found</p>`;
+                return;
+            } 
+            GarageMessage.innerHTML = `<p style="color: var(--success-color); font-size: 18px;">Garage report saved! Garage date updated successfully!</p>`;
+            showTick(tickMark);
         }
     });
 }
@@ -474,3 +537,100 @@ if(loginPage) {
       document.querySelector(".login-container-admin").style.display = "none";
     }
 }
+
+const DriverSideBar = document.getElementById("Driversidebar");
+if(DriverSideBar) {
+    function closemenu(){
+        document.getElementsByClassName("sidebar")[0].style = "left:-250px"
+        document.getElementsByClassName("menu-icon")[0].style = "display:block"
+        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:-200px"
+    }
+    function showmenu(){
+        document.getElementsByClassName("sidebar")[0].style = "left:0px"
+        document.getElementsByClassName("menu-icon")[0].style = "display:none"
+        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:0px"
+    }
+}
+
+    function closemenu(){
+        document.getElementsByClassName("menu-bar")[0].style = "left:-250px"
+        document.getElementsByClassName("menu-icon")[0].style = "display:block"
+        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:-200px"
+    }
+    function showmenu(){
+        document.getElementsByClassName("menu-bar")[0].style = "left:0px"
+        document.getElementsByClassName("menu-icon")[0].style = "display:none"
+        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:0px"
+    }
+    
+    const resultBlock = document.getElementById("resultBlock");
+
+    function searchdetails(){
+        // BUS Details
+        let opt = document.getElementsByClassName("choose-opt")[0].value;
+        if(opt === "bus"){
+        let num = Number(document.getElementsByClassName("details-search")[0].value.trim()); 
+        
+        let res 
+        if(isNaN(num)){
+            res = `<h2>Enter Valid Details</h2>`;  
+            document.getElementsByClassName("result")[0].innerHTML = res;
+            document.getElementsByClassName("result")[0].style = "display:flex;"
+            return;
+        }
+
+        let bus = buses.find(bus => bus.busId === num);
+        if(bus){
+            res = `<p><b>Bus ID</b> :- ${bus.busId}</p>
+                    <p><b>Bus NO</b>:- ${bus.busNo}</p> 
+                    <p><b>Bus Route</b> :- ${bus.route}</p> 
+                    <p><b>Bus Driver</b> :- ${bus.driver}</p> 
+                    <p><b>Bus meter Reading</b> :- ${bus.meterReading}</p> 
+                    <p><b>Bus Last fuel</b> :- ${bus.lastFuelDate}</p> 
+                    <p><b>Bus Last garage<b> :- ${bus.lastGarageDate}</p> `
+        }
+        else{
+        res = '<p>Bus Not Found!</p>';
+        }
+    
+        document.getElementsByClassName("result")[0].innerHTML = res
+        document.getElementsByClassName("result")[0].style = "display:flex;"
+        
+    }
+    
+
+    else{
+        // DRIVER DETAILS
+            let drvId = document.getElementsByClassName("details-search")[0].value.trim();
+
+            let res
+            console.log(drvId)
+            if(drvId === ""){
+                res = `<h1>Enter Valid Details</h2>`;  
+                document.getElementsByClassName("result")[0].innerHTML = res;
+                document.getElementsByClassName("result")[0].style = "display:flex;"
+                return;
+            }
+
+            let drv = drivers.find(drv => drv.driverId === drvId)
+
+            if(drv){
+                    
+                res = `<p><b>Driver Name</b> :- ${drv.driverName}
+                        <p><b>Driver ID</b> :- ${drv.driverId}
+                        <p><b>Driver BUS</b> :- ${drv.driverBusId}
+                        <p><b>Driver Location</b> :- ${drv.driverLocation}
+                        <p><b>Driver status</b> :- ${drv.status}`
+            }
+
+            else{
+
+                res = '<p>Bus Not Found!</p>';
+            }
+            document.getElementsByClassName("result")[0].innerHTML = res;
+            document.getElementsByClassName("result")[0].style = "display:flex;"
+        console.log(res);
+    }
+    //  resultBlock.style.transform = "rotateX('-90deg')";
+    
+    }

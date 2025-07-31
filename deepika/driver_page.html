@@ -96,7 +96,7 @@
                     <div id="fuelFields" class="hidden">
                         <div>
                             <label for="serviceDate">Date</label>
-                            <input type="date" id="serviceDate">
+                            <input type="date" id="serviceFuelDate">
                         </div>
                         <div>
                             <label for="serviceFuelBus">Bus Number</label>
@@ -106,36 +106,38 @@
                             <label for="fuelLiters">Liters</label>
                             <input type="number" id="fuelLiters" placeholder="Enter Liters">
                         </div>
-                        <div id="serviceFuelSubmit">
+                        <div>
                             <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
-                                <button type="submit" class="submit">
+                                <button type="submit" class="submit" id="serviceFuelSubmit">
                                     <i class="fas fa-wrench"></i> Submit Service
                                 </button>
                                 <i id="serviceTick" class="fas fa-check-circle tick-mark"></i>
                             </div>
                         </div>
+                        <div id="serviceFuelMessage" style="height: 30px; font-family: Arial, Helvetica, sans-serif; color: red;"></div>
                     </div>
+                    
                     <div id="garageFields" class="hidden">
                         <div>
                             <label for="serviceDateGarage">Date</label>
-                            <input type="date" id="serviceDateGarage">
+                            <input type="date" id="serviceGarageDate">
                         </div>
                         <div>
                             <label for="serviceGarageBus">Bus Number</label>
                             <input type="number" id="serviceGarageBus" placeholder="Enter Bus Number">
                         </div>
-                        <div id="serviceGarageSubmit">
+                        <div>
                             <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
-                                <button type="submit" class="submit">
+                                <button type="submit" class="submit" id="serviceGarageSubmit">
                                     <i class="fas fa-wrench"></i> Submit Service
                                 </button>
                                 <i id="serviceTick" class="fas fa-check-circle tick-mark"></i>
                             </div>
                         </div>
+                        <div id="serviceGarageMessage" style="height: 30px; font-family: Arial, Helvetica, sans-serif; color: red;"></div>
                     </div>
                     
                 </form>
-                <div id="serviceStatus" class="status"></div>
             </div>
         </section>
 
