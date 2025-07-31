@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Management</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      background-color: #1c1c1c;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 2rem 1rem;
+      z-index: 999;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar h2 {
+      color: yellow;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border-left: 4px solid transparent;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      border-left: 4px solid orange;
+      background-color: #333;
+    }
+
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: #222;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    .sidebar.hide {
+      transform: translateX(-100%);
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 2rem;
+      transition: margin-left 0.3s ease-in-out;
+    }
+
+    header {
+      background-color: #fbc02d;
+      padding: 1rem;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1c1c1c;
+    }
+
+    h2 {
+      margin-top: 1rem;
+      color: #444;
+    }
+
+    .driver-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .driver-card {
+      background-color: white;
+      padding: 1rem;
+      border-left: 5px solid #fbc02d;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .driver-card span {
+      display: block;
+      margin: 5px 0;
+    }
+
+    form {
+      margin-top: 30px;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    input, button {
+      padding: 8px;
+      margin: 8px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #fbc02d;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.show {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Services</h2>
+    <a href="index.html">Dashboard</a>
+    <a href="garage.html">Garage</a>
+    <a href="fuel.html">Fuel</a>
+    <a href="drivers.html" class="active">Drivers</a>
+  </div>
+
+  <div class="main-content">
+    <header>Driver Management</header>
+
+    <h2>Driver List</h2>
+    <div class="driver-list" id="driverList">
+      <div class="driver-card">
+        <span><strong>Name:</strong> Ramesh K</span>
+        <span><strong>Phone:</strong> 9876543210</span>
+        <span><strong>License No:</strong> DL0123456789</span>
+        <span><strong>Experience:</strong> 5 years</span>
+        <span><strong>Bus Assigned:</strong> KA01 AB 1234</span>
+      </div>
+    </div>
+
+    <h2>Add New Driver</h2>
+    <form id="driverForm">
+      <input type="text" id="name" placeholder="Driver Name" required>
+      <input type="text" id="phone" placeholder="Phone Number" required>
+      <input type="text" id="license" placeholder="License Number" required>
+      <input type="text" id="experience" placeholder="Experience (e.g., 3 years)" required>
+      <input type="text" id="bus" placeholder="Bus Assigned" required>
+      <button type="submit">Add Driver</button>
+    </form>
+  </div>
+
+  <script src="drivers.js"></script>
+</body>
+</html>
