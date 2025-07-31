@@ -302,3 +302,47 @@ header p {
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
 }
 
+/* ☰ Toggle Button */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px; /* Top-right */
+  font-size: 28px;
+  color: #2e2e48;
+  background-color: white;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Sidebar Behavior */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 220px;
+    background-color: #2e2e48;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 998;
+  }
+
+  .sidebar.show-sidebar {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+}
