@@ -1,35 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const checkBtn = document.getElementById("check");
-  const dateInput = document.getElementById("date");
-  const cards = document.querySelectorAll(".card");
 
-  checkBtn.addEventListener("click", () => {
-    const selectedDate = dateInput.value;
-
-    if (!selectedDate) {
-      alert("Please select a date.");
-      return;
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("show");
     }
 
-    let anyMatch = false;
+    document.getElementById("check").addEventListener("click", () => {
+      const selectedDate = document.getElementById("date").value;
+      const cards = document.querySelectorAll(".card");
+      let found = false;
 
-    cards.forEach(card => {
-      const dateSpan = Array.from(card.querySelectorAll("span")).find(span =>
-        span.textContent.includes("Date:")
-      );
+      cards.forEach(card => {
+        if (card.dataset.date === selectedDate) {
+          card.style.display = "flex";
+          found = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
 
-      const cardDate = dateSpan ? dateSpan.textContent.split("Date:")[1].trim() : "";
-
-      if (cardDate === selectedDate) {
-        card.style.display = "flex";
-        anyMatch = true;
-      } else {
-        card.style.display = "none";
-      }
+      if (!found) alert("No records found for selected date.");
     });
 
-    if (!anyMatch) {
-      alert("No garage visits found for the selected date.");
-    }
-  });
-});
+    document.getElementById("reset").addEventListener("click", () => {
+      document.getElementById("date").value = "";
+      document.querySelectorAll(".card").forEach(card => {
+        card.style.display = "flex";
+      });
+    });
+  
