@@ -7,7 +7,7 @@
     }
 
     body {
-      background-color: white;
+      background-color:rgb(248, 248, 248);
       overflow-x: hidden;
       position: relative;
     }
@@ -53,14 +53,14 @@
     header {
   width: 100%;
   min-height: 100px;
-  background-color:white;
+  background-image: url(./dataset/banner.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 20px;
   text-align: center;
   position: relative;
-  box-shadow: 0px 10px 30px 5px black;
+  /* box-shadow: 0px 5px 20px 2px white; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,11 +79,11 @@
 }
 
 .title1, .title2 {
-  font-size: 2.2rem;
   color: #fff;
   display: inline-block;
-  line-height: 1.2;
+  line-height: 0;
   word-break: break-word;
+  opacity: 1;
 }
 
 .title1 {
@@ -92,14 +92,22 @@
   padding: 10px 14px;
   border-radius: 8px;
   margin-right: 12px;
-  font-weight: 600;
   animation: fadeInRight 1.5s ease-in;
+  font-family: "Ubuntu", sans-serif;
+  font-size:60px;
+  font-weight: bold;
+  font-style: normal;
+  transform: translateX(30px)
 }
 
 .title2 {
   color: black;
-  font-weight: 700;
   animation: fadeInLeft 1.5s ease-in;
+  font-family: "Playwrite AU QLD", cursive;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 40px;
 }
 
 /* Responsive Header for Tablets and Mobiles */
@@ -111,7 +119,8 @@
   }
 
   .title1, .title2 {
-    font-size: 1.8rem;
+    font-size: 3rem;
+    margin-bottom: 30px;
   }
 
   header {
@@ -129,9 +138,12 @@
   }
 
   .title1, .title2 {
-    font-size: 1.4rem;
     display: block;
-    margin: 5px auto;
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  #bg-video{
+    display: none;
   }
 
   header {
@@ -170,7 +182,8 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-      filter: brightness(0.7);
+      /* filter: brightness(0.5); */
+      opacity: 0.9;
     }
 
     .login-container, .login-container-driver, .login-container-admin {
@@ -216,7 +229,7 @@
     }
 
     .button2:hover {
-      background: linear-gradient(to right, #ff8c00, #e65100);
+      background: linear-gradient(to right, orangered,orangered, orange);
       transform: scale(1.08);
     }
 
@@ -330,8 +343,8 @@
     }
 
     @keyframes fadeInRight {
-      from { transform: translateX(100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from { transform: translateX(1000px); opacity: 0; }
+      to { transform: translateX(30px); opacity: 1; }
     }
 
     @keyframes fadeInLeft {

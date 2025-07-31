@@ -5,22 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Leave Approval Panel</title>
   <link rel="stylesheet" href="leave.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="sidebar">
-      <div class="sidebar-header">
-        <h2>Admin</h2>
-      </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li class="item"><a href="#">Profile</a></li>
-          <li class="item"><a href="#">Service</a></li>
-          <li class="item"><a href="#">Leaves</a></li>
-          <li class="item"><a href="#">Buses</a></li>
-          <li class="item"><a href="#">Logout</a></li>
-        </ul>
-      </nav>
+<button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Admin</h2>
+      <button class="close-btn" onclick="toggleSidebar()">✖</button>
     </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#" class="nav-item">Profile</a></li>
+        <li><a href="#" class="nav-item">Drivers</a></li>
+        <li><a href="#" class="nav-item">Services</a></li>
+        <li><a href="#" class="nav-item active">Leaves</a></li>
+        <li><a href="#" class="nav-item">Buses</a></li>
+        <li><a href="#" class="nav-item">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+
   <div class="container">
     <h1>Leave Approval</h1>
 
@@ -80,9 +86,9 @@
     </div>
   </div>
   
-    <!-- <footer class="footer">
-      <p>&copy; 2025 Campus Wheels. All rights reserved.</p>
-    </footer> -->
+<!-- <footer class="footer">
+  <p>&copy; 2025 Campus Wheels. All rights reserved.</p>
+</footer> -->
 
  <script src="leave.js"></script>
 </body>
