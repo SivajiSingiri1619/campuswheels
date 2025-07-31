@@ -3,72 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="buss.css">
   <title>Bus Availability</title>
+  <link rel="stylesheet" href="buss.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="layout">
-    <div class="sidebar">
-      <div class="sidebar-header">
-        <h2>Admin</h2>
-      </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li class="item"><a href="#">Profile</a></li>
-          <li class="item"><a href="#">Service</a></li>
-          <li class="item"><a href="#">Leaves</a></li>
-          <li class="item"><a href="#">Buses</a></li>
-          <li class="item"><a href="#">Logout</a></li>
-        </ul>
-      </nav>
+  <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Admin</h2>
+      <button class="close-btn" onclick="toggleSidebar()">✖</button>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#" class="nav-item">Profile</a></li>
+        <li><a href="#" class="nav-item">Drivers</a></li>
+        <li><a href="#" class="nav-item">Services</a></li>
+        <li><a href="#" class="nav-item">Leaves</a></li>
+        <li><a href="#" class="nav-item active">Buses</a></li>
+        <li><a href="#" class="nav-item">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  
+  <div class="main-content">
+    <h2>Buses</h2>
+
+    <div class="check-availability">
+      <label for="bus-number">Bus Number:</label>
+      <input type="text" id="bus-number" placeholder="Enter bus number" />
+      <label for="date">Date:</label>
+      <input type="date" id="date" />
+      <button id="check">Check Availability</button>
     </div>
 
-    <div class="main-content">
-      <h2>Buses</h2>
-
-      <div class="check-availability">
-        <label for="bus-number">Bus Number:</label>
-        <input type="text" id="bus-number" placeholder="Enter bus number" />
-        <label for="date">Date:</label>
-        <input type="date" id="date" />
-        <button id="check">Check Availability</button>
-      </div>
-
-      <div class="container">
-        <div class="box available">
-          <h3>Available Buses</h3>
+    <div class="container">
+      <div class="box available">
+        <h3>Available Buses</h3>
         <ul>
-          <li class="bus">Bus 101 </li>
-          <li class="bus">Bus 202 </li>
-          <li class="bus">Bus 305 </li>
-          <li class="bus">Bus 407 </li>
-          <li class="bus">Bus 505 </li>
-          <li class="bus">Bus 118 </li>
-          <li class="bus">Bus 519 </li>
-          <li class="bus">Bus 522 </li>
-          <li class="bus">Bus 503 </li>
-          <li class="bus">Bus 473 </li>
-          <li class="bus">Bus 477 </li>
-          <li class="bus">Bus 430 </li>
+          <li class="bus">Bus 101</li>
+          <li class="bus">Bus 202</li>
+          <li class="bus">Bus 305</li>
+          <li class="bus">Bus 407</li>
+          <li class="bus">Bus 505</li>
+          <li class="bus">Bus 118</li>
+          <li class="bus">Bus 519</li>
+          <li class="bus">Bus 522</li>
+          <li class="bus">Bus 503</li>
+          <li class="bus">Bus 473</li>
+          <li class="bus">Bus 477</li>
+          <li class="bus">Bus 430</li>
         </ul>
       </div>
 
-        <div class="box unavailable">
-          <h3>Unavailable Buses</h3>
-          <ul>
-          <li class="bus">Bus 110 </li>
-          <li class="bus">Bus 215 </li>
-          <li class="bus">Bus 320 </li>
-          <li class="bus">Bus 425 </li>
-          <li class="bus">Bus 530 </li>
-          <li class="bus">Bus 125 </li>
-          <li class="bus">Bus 504 </li>
+      <div class="box unavailable">
+        <h3>Unavailable Buses</h3>
+        <ul>
+          <li class="bus">Bus 110</li>
+          <li class="bus">Bus 215</li>
+          <li class="bus">Bus 320</li>
+          <li class="bus">Bus 425</li>
+          <li class="bus">Bus 530</li>
+          <li class="bus">Bus 125</li>
+          <li class="bus">Bus 504</li>
         </ul>
-        </div>
       </div>
     </div>
   </div>
+
   <script src="buss.js"></script>
 </body>
 </html>

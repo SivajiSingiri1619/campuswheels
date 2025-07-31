@@ -61,12 +61,11 @@
       <h2>Admin Panel</h2>
       <span class="close-btn" onclick="toggleSidebar()">×</span>
     </div>
-    <a href="#">Profile</a>
+    <a href="#" class="nav-item active">Profile</a>
     <a href="#">Drivers</a>
+    <a href="#">Services</a>
+    <a href="#">Buses</a>
     <a href="#">Leaves</a>
-    <a href="#">Garrage</a>
-    <a href="#">Busses</a>
-    <a href="#">Others</a>
     <a href="#" onclick="if(confirm('Do you want to logout?')) { window.location.replace('../karthik/index.html'); }">Logout</a>
   </div>
 
@@ -126,10 +125,14 @@
   </div>
 
   <!-- JavaScript -->
-  <script>
+    <script>
     function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('show-sidebar');
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("show");
+    }
+
+    function fun() {
+      alert("Filtering data for the selected date...");
     }
 
     window.onload = () => {

@@ -6,31 +6,29 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&display=swap" rel="stylesheet">
-
 
   <title>Document</title>
 </head>
 <body>
            <div class="header">
-                    <nav>
-                          <div class="logo"><img src="RN wheels logo.png" alt=""></div>
-                          <div class="nav-items">
-                           <div><h1>CAMPUS WHEELS</h1></div>
-                          </div>
-                          <div class="menu-icon" onclick="showmenu()">&#8801;</div>
-                    </nav>
-                  </div>
+               <nav>
+                 <div class="logo"><img src="RN wheels logo.png" alt=""></div>
+                 <div class="nav-items">
+                 <div><h1>CAMPUS WHEELS</h1></div>
+                 </div>
+                 <div class="menu-icon" onclick="showmenu()">&#8801;</div>
+               </nav>
+          </div>
 
 
-            <div class="menu">
+           <div class="menu">
                <div class="menu-bar">
                     <div class="close-bar" onclick="closemenu()">&times;</div>
-                    <div class="opt" onclick="window.location.replace('../nitya/admin4.html')">Profile</div>
-                    <div class="opt" onclick="window.location.replace('')">Drivers</div>
-                    <div class="opt" onclick="window.location.replace('../manasa/leave.html')">Leaves</div>
-                    <div class="opt" onclick="window.location.replace('../meghana/garage.html')">Garage</div>
-                    <div class="opt" onclick="window.location.replace('../manasa/buss.html')">Buses</div>
+                    <div class="opt">Profile</div>
+                    <div class="opt">Drivers</div>
+                    <div class="opt">Leaves</div>
+                    <div class="opt">Garage</div>
+                    <div class="opt">Buses</div>
                     <div class="opt">others</div>
                </div>
                
@@ -54,7 +52,7 @@
                          </div>
                     </div>
 
-                    <div class="search"> 
+                    <div class="search" id="searchDetails"> 
                          <div class="search-bar">
                          <input type="text" placeholder="Search bus number" class="details-search" id="busId">
                          
@@ -71,11 +69,8 @@
                     </div>
                </div>
           </div>
-           <script src="script.js">
-
+           <script src="../deepika/script.js">
+  
            </script>
 </body>
 </html>
-
-
-
