@@ -1,32 +1,31 @@
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("show");
+}
 
-  function fun() {
-    const selectedDate = document.getElementById("date").value; 
-    const cards = document.querySelectorAll(".card");
+function filterData() {
+  const selectedDate = document.getElementById("date").value;
+  const cards = document.querySelectorAll(".card");
 
-    if (!selectedDate) {
-  
-      cards.forEach(card => card.style.display = "flex");
-      return;
-    }
-
-   
-    const parts = selectedDate.split("-");
-    const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`; 
-
-    cards.forEach(card => {
-      const spans = card.getElementsByTagName("span");
-      let dateText = "";
-      for (let span of spans) {
-        if (span.textContent.includes("Date:")) {
-          dateText = span.textContent.split(":")[1].trim();
-          break;
-        }
-      }
-
-      if (dateText === formattedDate) {
-        card.style.display = "flex";
-      } else {
-        card.style.display = "none";
-      }
-    });
+  if (!selectedDate) {
+    cards.forEach(card => card.style.display = "flex");
+    return;
   }
+
+  const [year, month, day] = selectedDate.split("-");
+  const formattedDate = `${day}-${month}-${year}`;
+
+  cards.forEach(card => {
+    const cardDate = card.getAttribute("data-date");
+    card.style.display = cardDate === formattedDate ? "flex" : "none";
+  });
+}
+
+function resetFilter() {
+  document.getElementById("date").value = "";
+  const cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    card.style.display = "flex"; // Show all cards
+  });
+}
+

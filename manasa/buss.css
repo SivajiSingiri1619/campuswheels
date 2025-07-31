@@ -6,119 +6,144 @@
 }
 
 body {
-  background-color: #edf2fb;
+  background: url("background.png") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Segoe UI", sans-serif;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+}
+
+h2 {
+  
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Orbitron', sans-serif;
+  color: #222;
 }
 
 .sidebar {
-      width: 240px;
-      background: #1a1a1a;
-      color: #fff;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      transition: transform 0.3s ease;
-      z-index: 1000;
-    }
+  width: 240px;
+  background: #1a1a1a;
+  color: #fff;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  height: 100%;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
 
-    .sidebar.hide {
-      transform: translateX(-100%);
-    }
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  position: relative;
+}
 
-    .sidebar-header {
-      padding: 20px;
-      text-align: center;
-      background: #000;
-      position: relative;
-    }
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #FFD700;
+  font-family: 'Orbitron', sans-serif;
+}
 
-    .sidebar-header h2 {
-      margin: 0;
-      font-size: 24px;
-      color: #FFD700;
-      font-family: 'Orbitron', sans-serif;
-    }
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #FFD700;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
 
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      color: #FFD700;
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      display: none;
-    }
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .sidebar-nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+.nav-item {
+  display: block;
+  padding: 15px 20px;
+  color: #ccc;
+  text-decoration: none;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
 
-    .nav-item {
-      display: block;
-      padding: 15px 20px;
-      color: #ccc;
-      text-decoration: none;
-      border-left: 4px solid transparent;
-      transition: all 0.3s ease;
-    }
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(255, 215, 0, 0.08);
+  color: #FFD700;
+  border-left: 4px solid #FFD700;
+}
 
-    .nav-item:hover,
-    .nav-item.active {
-      background: rgba(255, 215, 0, 0.08);
-      color: #FFD700;
-      border-left: 4px solid #FFD700;
-    }
-
-    .menu-btn {
-      display: none;
-      position: fixed;
-      top:0;
-      right:0;
-      z-index: 1100;
-      font-size: 22px;
-      border: none;
-      border-radius: 5px;
-      padding: 6px 10px;
-      cursor: pointer;
-      color: #000;
-    }
+.menu-btn {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1100;
+  font-size: 22px;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: #000;
+}
 
 .main-content {
   margin-left: 260px;
   padding: 30px;
 }
 
+h2 {
+  margin-bottom: 20px;
+}
+
 .check-availability {
+  margin: 30px auto;
   text-align: center;
-  margin-bottom: 25px;
 }
 
 #bus-number,
 #date {
-  padding: 8px 12px;
-  margin: 5px;
+  padding: 10px 14px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  width: 180px;
+  background-color: #fffef5;
+  margin: 8px;
+  width: 220px;
+  transition: all 0.3s ease;
 }
 
 #check {
-  padding: 8px 16px;
-  background: linear-gradient(to right, #1e3c72, #2a5298);
-  color: white;
+  padding: 10px 24px;
+  background: linear-gradient(to right, #ffd54f, #fff176);
+  color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 10px;
+}
+
+#check:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #ffe082, #fff59d);
 }
 
 .container {
   display: flex;
-  gap: 20px;
+  gap: 40px;
   flex-wrap: wrap;
   justify-content: space-between;
 }
@@ -126,39 +151,48 @@ body {
 .box {
   flex: 1;
   min-width: 300px;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.available {
-  background-color: #d7e3fc;
+.box h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #333;
 }
 
-.unavailable {
-  background-color: #f8d7da;
+.box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .bus {
-  padding: 12px;
-  margin-bottom: 10px;
-  background-color: white;
-  border-radius: 10px;
-  border-left: 6px solid #6c757d;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  margin-bottom: 6px;
+  background-color: transparent;
+  border-left: 3px solid #999;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.available .bus {
-  border-color: #198754;
+.bus:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding-left: 24px;
+  cursor: pointer;
+  color: #000;
 }
 
-.unavailable .bus {
-  border-color: #dc3545;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .menu-btn {
     display: block;
+    color: #000;
+    background:none ;
+    z-index: 1300;
+  }
+  .header-right h1{
+    display: none;
   }
 
   .sidebar {
@@ -171,21 +205,50 @@ body {
     transition: left 0.3s ease;
     z-index: 1050;
   }
-  .main-content {
-    margin-left: 0;
-    padding-top: 80px;
-  }
+
   .sidebar.open {
     left: 0;
   }
 
   .close-btn {
     display: block;
+    z-index: 1300;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding-top: 80px;
   }
 
   .container {
-    padding-left: 0;
-    margin-left: 0;
-    padding-top: 60px;
+    flex-direction: column;
   }
+}
+.top-header {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, white, #ffa726);
+  padding: 5px 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+}
+
+.header-left .logo {
+  height: 60px;
+  object-fit: contain;
+}
+
+.header-right h1 {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  right: -0px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a1a1a;
 }

@@ -50,11 +50,7 @@
       transition: all 0.3s ease;
     }
 
-    .sidebar a:hover {
-      border-left: 4px solid orange;
-      background-color: #333;
-    }
-
+    .sidebar a:hover,
     .sidebar a.active {
       border-left: 4px solid orange;
       background-color: #333;
@@ -77,7 +73,6 @@
       position: absolute;
       top: 15px;
       right: 20px;
-      
       font-size: 20px;
       background: none;
       border: none;
@@ -97,6 +92,7 @@
       color: #333;
       text-align: center;
       margin-bottom: 1.5rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .Checkk {
@@ -131,6 +127,15 @@
       border-radius: 6px;
       cursor: pointer;
     }
+    #reset {
+      padding: 7px 14px;
+      background-color: #fbc02d;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
     .container {
       display: flex;
@@ -153,7 +158,7 @@
 
     .card span {
       font-size: 15px;
-      min-width: 150px;
+      min-width: 200px;
       color: #333;
     }
 
@@ -213,8 +218,10 @@
 </head>
 <body>
 
+  <!-- Sidebar Toggle Button -->
   <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <button class="close-btn" onclick="toggleSidebar()">✖</button>
     <h2>Services</h2>
@@ -223,6 +230,7 @@
     <a href="fuel.html" class="active">Fuel</a>
   </div>
 
+  <!-- Main Content -->
   <div class="main-content">
     <h1>Fuel Fill-up Details</h1>
 
@@ -230,39 +238,99 @@
       <div class="input-group">
         <label for="date">Date:</label>
         <input type="date" id="date">
-        <button id="check" onclick="fun()">Check</button>
+        <button id="check" onclick="filterData()">Check</button>
+        <button id="reset" onclick="resetFilter()">Reset</button>
       </div>
     </div>
 
     <div class="container">
-      <div class="card">
+      <!-- Card 1 -->
+      <div class="card" data-date="01-07-2025">
         <span><strong>Bus:</strong> KA01 AB 1234</span>
         <span><strong>Date:</strong> 01-07-2025</span>
         <span><strong>Fuel Type:</strong> Diesel</span>
         <span><strong>Liters:</strong> 120</span>
-        <span><strong>Station:</strong> HP Petrol Bunk</span>
+       
       </div>
 
-      <div class="card">
+      <!-- Card 2 -->
+      <div class="card" data-date="03-07-2025">
         <span><strong>Bus:</strong> KA02 CD 4567</span>
         <span><strong>Date:</strong> 03-07-2025</span>
         <span><strong>Fuel Type:</strong> Diesel</span>
         <span><strong>Liters:</strong> 130</span>
-        <span><strong>Station:</strong> Indian Oil</span>
+       
       </div>
-    </div>
+
+      <!-- Card 3 -->
+      <div class="card" data-date="03-07-2025">
+        <span><strong>Bus:</strong> KA03 EF 7890</span>
+        <span><strong>Date:</strong> 03-07-2025</span>
+        <span><strong>Fuel Type:</strong> Petrol</span>
+        <span><strong>Liters:</strong> 110</span>
+     
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card" data-date="04-07-2025">
+        <span><strong>Bus:</strong> KA04 GH 4321</span>
+        <span><strong>Date:</strong> 04-07-2025</span>
+        <span><strong>Fuel Type:</strong> Diesel</span>
+        <span><strong>Liters:</strong> 125</span>
+     
+      </div>
+
+
+  <div class="card">
+    <span><strong>Bus:</strong> KA01 AB 1234</span>
+    <span><strong>Date:</strong> 01-07-2025</span>
+    <span><strong>Fuel Type:</strong> Diesel</span>
+    <span><strong>Liters:</strong> 120</span>
+    
   </div>
 
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("show");
-    }
+  <div class="card">
+    <span><strong>Bus:</strong> KA02 CD 4567</span>
+    <span><strong>Date:</strong> 03-07-2025</span>
+    <span><strong>Fuel Type:</strong> Diesel</span>
+    <span><strong>Liters:</strong> 130</span>
+   
+  </div>
 
-    function fun() {
-      alert("Filtering data for the selected date...");
-    }
-  </script>
+  <div class="card">
+    <span><strong>Bus:</strong> KA03 EF 8910</span>
+    <span><strong>Date:</strong> 03-07-2025</span>
+    <span><strong>Fuel Type:</strong> Petrol</span>
+    <span><strong>Liters:</strong> 90</span>
+ 
+  </div>
 
+  <div class="card">
+    <span><strong>Bus:</strong> KA04 GH 1112</span>
+    <span><strong>Date:</strong> 05-07-2025</span>
+    <span><strong>Fuel Type:</strong> Diesel</span>
+    <span><strong>Liters:</strong> 100</span>
+   
+  </div>
+
+  <div class="card">
+    <span><strong>Bus:</strong> KA05 IJ 1314</span>
+    <span><strong>Date:</strong> 07-07-2025</span>
+    <span><strong>Fuel Type:</strong> Petrol</span>
+    <span><strong>Liters:</strong> 110</span>
+   
+  </div>
+
+  <div class="card">
+    <span><strong>Bus:</strong> KA06 KL 1516</span>
+    <span><strong>Date:</strong> 07-07-2025</span>
+    <span><strong>Fuel Type:</strong> Diesel</span>
+    <span><strong>Liters:</strong> 95</span>
+    
+  </div>
+</div>
+
+  <!-- External JS -->
+  <script src="fuel.js"></script>
 </body>
 </html>

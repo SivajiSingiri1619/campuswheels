@@ -1,35 +1,30 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const checkBtn = document.getElementById("check");
-  const dateInput = document.getElementById("date");
-  const cards = document.querySelectorAll(".card");
 
-  checkBtn.addEventListener("click", () => {
-    const selectedDate = dateInput.value;
+   function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("show");
+}
 
-    if (!selectedDate) {
-      alert("Please select a date.");
-      return;
-    }
+    document.getElementById("check").addEventListener("click", () => {
+      const selectedDate = document.getElementById("date").value;
+      const cards = document.querySelectorAll(".card");
+      let found = false;
 
-    let anyMatch = false;
+      cards.forEach(card => {
+        if (card.dataset.date === selectedDate) {
+          card.style.display = "flex";
+          found = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
 
-    cards.forEach(card => {
-      const dateSpan = Array.from(card.querySelectorAll("span")).find(span =>
-        span.textContent.includes("Date:")
-      );
-
-      const cardDate = dateSpan ? dateSpan.textContent.split("Date:")[1].trim() : "";
-
-      if (cardDate === selectedDate) {
-        card.style.display = "flex";
-        anyMatch = true;
-      } else {
-        card.style.display = "none";
-      }
+      if (!found) alert("No records found for selected date.");
     });
 
-    if (!anyMatch) {
-      alert("No garage visits found for the selected date.");
-    }
-  });
-});
+    document.getElementById("reset").addEventListener("click", () => {
+      document.getElementById("date").value = "";
+      document.querySelectorAll(".card").forEach(card => {
+        card.style.display = "flex";
+      });
+    });
+  
