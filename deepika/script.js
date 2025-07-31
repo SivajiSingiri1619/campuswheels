@@ -29,7 +29,7 @@ const admins = [
   {adminId: "ADM005", adminName: "Satish", email: "li.wei@example.com", role: "Admin", phone: "+91 1012345678", dateOfJoining: "2022-08-25", location: "Beijing, China"}
 ];
 
-window.buses = [
+let buses = [
   { busId: 1, busNo: "AP16AB1001", meterReading: 45210, lastFuelDate: "2025-07-25", lastGarageDate: "2025-07-10", driver: "Ravi", route: "Kakinada - Rajahmundry" },
   { busId: 2, busNo: "AP16AB1002", meterReading: 46000, lastFuelDate: "2025-07-20", lastGarageDate: "2025-07-05", driver: "Suresh", route: "Rajahmundry - Eluru" },
   { busId: 3, busNo: "AP16AB1003", meterReading: 43800, lastFuelDate: "2025-07-18", lastGarageDate: "2025-06-30", driver: "Mahesh", route: "Kakinada - Amalapuram" },
@@ -72,11 +72,11 @@ function checkTimeWindow() {
         if (isTimeWindow) {
             submitBtn.disabled = false;
             submitBtn.classList.remove('disabled');
-            timeStatus.innerHTML = '<p style="color: var(--success-color); font-size: 20px;">You can submit now (8 AM - 10 AM)</p>';
+            timeStatus.innerHTML = '<p style="color: rgb(20, 179, 20); font-size: 16px;">You can submit now (8 AM - 10 AM)</p>';
         } else {
             submitBtn.disabled = true;
             submitBtn.classList.add('disabled');
-            timeStatus.innerHTML = '<p style="color: var(--error-color); font-size: 20px;">Form closed (open only 8 AM - 10 AM)</p>';
+            timeStatus.innerHTML = '<p style="color: red; font-size: 16px;">Form closed (open only 8 AM - 10 AM)</p>';
         }
     }
 }
@@ -96,10 +96,10 @@ if(dailyEntryForm){
         const tickMark = document.getElementById('dailyTick');
 
         if (busNumber && startTime && endTime && startMeter && endMeter && studentCount) {
-            statusDiv.innerHTML = '<p style="color: var(--success-color);">Bus report saved!</p>';
+            statusDiv.innerHTML = '<p style="color: rgb(20, 179, 20);">Bus report saved!</p>';
             showTick(tickMark);
         } else {
-            statusDiv.innerHTML = '<p style="color: var(--error-color);">Please fill all fields</p>';
+            statusDiv.innerHTML = '<p style="color: red;">Please fill all fields</p>';
         }
     });
 }
@@ -124,6 +124,12 @@ if(fuelBtn){
             fuelBtn.classList.add('fuel');
             garageBtn.classList.remove('garage');
             fuelFields.classList.remove('hidden');
+
+            garageBtn.style.backgroundColor = "transparent";
+            garageBtn.style.color = "black";
+            fuelBtn.style.backgroundColor = "#f5487f";
+            fuelBtn.style.color = "white";
+
             garageFields.classList.add('hidden');
         }
         else {
@@ -131,6 +137,11 @@ if(fuelBtn){
             fuelBtn.classList.remove('active');
             fuelFields.classList.add('hidden');
             garageBtn.classList.add('garage');
+
+            garageBtn.style.backgroundColor = "orange";
+            garageBtn.style.color = "white";
+            fuelBtn.style.backgroundColor = "#f5487f";
+            fuelBtn.style.color = "white";
         }
     });
 }
@@ -146,12 +157,22 @@ if(garageBtn){
             fuelBtn.classList.remove('fuel');
             garageFields.classList.remove('hidden');
             fuelFields.classList.add('hidden');
+
+            fuelBtn.style.backgroundColor = "transparent";
+            fuelBtn.style.color = "black";
+            garageBtn.style.backgroundColor = "orange";
+            garageBtn.style.color = "white";
         }
         else {
             serviceTypeInput.value = '';
             garageBtn.classList.remove('active');
             garageFields.classList.add('hidden');
             fuelBtn.classList.add('fuel');
+
+            garageBtn.style.backgroundColor = "orange";
+            garageBtn.style.color = "white";
+            fuelBtn.style.backgroundColor = "#f5487f";
+            fuelBtn.style.color = "white";
         }
     });
 }
@@ -177,19 +198,20 @@ if(serviceForm){
             }
 
             let FuelFound = false;
+
             buses.forEach(obj => {
                 if (obj.busId === FuelBusNumber) {
                     obj.lastFuelDate = FuelDate;
                     FuelFound = true;
                 }
+                
             });
-            
             if (!FuelFound) {
                 FuelMessage.innerHTML = `<p style="color: red; font-size: 18px;">Bus Not Found</p>`;
                 return;
             }
 
-            FuelMessage.innerHTML = `<p style="color: var(--success-color)">Fuel report saved! Fuel date updated successfully!</p>`;
+            FuelMessage.innerHTML = `<p style="color: rgb(20, 179, 20)">Fuel report saved! Fuel date updated successfully!</p>`;
             showTick(tickMark);
         } 
 
@@ -219,7 +241,7 @@ if(serviceForm){
                 GarageMessage.innerHTML = `<p style="color: red; font-size: 18px;">Bus Not Found</p>`;
                 return;
             } 
-            GarageMessage.innerHTML = `<p style="color: var(--success-color); font-size: 18px;">Garage report saved! Garage date updated successfully!</p>`;
+            GarageMessage.innerHTML = `<p style="color: rgb(20, 179, 20); font-size: 18px;">Garage report saved! Garage date updated successfully!</p>`;
             showTick(tickMark);
         }
     });
@@ -242,10 +264,23 @@ function generateLeaveDateButtons() {
         button.className = 'date';
         button.textContent = formattedDate;
         button.dataset.date = dateStr;
+        // button.addEventListener('click', () => {
+        //     leaveDateInput.value = dateStr;
+        //     document.querySelectorAll('.date').forEach(btn => btn.classList.remove('date-selected'));
+        //     button.classList.add('date-selected');
+        // });
         button.addEventListener('click', () => {
-            leaveDateInput.value = dateStr;
+            const alreadySelected = button.classList.contains('date-selected');
+
             document.querySelectorAll('.date').forEach(btn => btn.classList.remove('date-selected'));
-            button.classList.add('date-selected');
+
+            if (alreadySelected) {
+                leaveDateInput.value = '';
+                button.classList.remove('date-selected');
+            } else {
+                leaveDateInput.value = dateStr;
+                button.classList.add('date-selected');
+            }
         });
         leaveDatesContainer.appendChild(button);
     }
@@ -260,10 +295,10 @@ if(leaveForm){
         const tickMark = document.getElementById('leaveTick');
 
         if (date) {
-            statusDiv.innerHTML = `<p style="color: var(--warning-color);">Pending . . .</p>`;
+            statusDiv.innerHTML = `<p style="color: orange;">Pending . . .</p>`;
             showTick(tickMark);
         } else {
-            statusDiv.innerHTML = `<p style="color: var(--warning-color);">Please select a date</p>`;
+            statusDiv.innerHTML = `<p style="color: orange;">Please select a date</p>`;
         }
     });
 }
@@ -288,7 +323,7 @@ if(DriverLoginButton) {
 
         if(driver && password === 'Aditya'){
             localStorage.setItem("loggedInDriverId",driver.driverId);
-            loginInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
+            loginInvalid.innerHTML = '<p style="color: rgb(20, 179, 20);">Login Successful!</p>';
             setTimeout(() => {
                 window.location.replace("../deepika/driver_page.html");
             }, 500);
@@ -319,7 +354,7 @@ if(AdminLoginButton){
 
         if(admin && AdminPassword === 'Aditya'){
             localStorage.setItem("loggedInAdminId",admin.adminId);
-            loginAdminInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
+            loginAdminInvalid.innerHTML = '<p style="color: rgb(20, 179, 20);">Login Successful!</p>';
             setTimeout(() => {
                 window.location.replace("../nitya/admin4.html");
             }, 500);
@@ -353,9 +388,10 @@ if (document.getElementById("DriverHello")) {
     generateLeaveDateButtons();
     checkTimeWindow();
     setInterval(checkTimeWindow, 60000);
+    calculateAttendance(driver);
 
-    RunAttendance(driver);
-    setInterval(() => RunAttendance(driver), 60000);
+    // RunAttendance(driver);
+    // setInterval(() => RunAttendance(driver), 60000);
   }
 }
 
@@ -369,18 +405,18 @@ if(document.getElementById("AdminWelcome")) {
     }
 }
 
-function RunAttendance(driver) {
-    const now = new Date();
-    const Hour = now.getHours();
-    const todayDate = now.toISOString().split('T')[0];
+// function RunAttendance(driver) {
+//     const now = new Date();
+//     const Hour = now.getHours();
+//     const todayDate = now.toISOString().split('T')[0];
 
-    const lastRun = localStorage.getItem('attendanceLastRun');
+//     const lastRun = localStorage.getItem('attendanceLastRun');
 
-    if(Hour === 23 && lastRun !== todayDate) {
-        calculateAttendance(driver);
-        localStorage.setItem('attendanceLastRun',todayDate);
-    }
-}
+//     if(Hour === 23 && lastRun !== todayDate) {
+//         calculateAttendance(driver);
+//         localStorage.setItem('attendanceLastRun',todayDate);
+//     }
+// }
 
 function calculateAttendance(driver) {
     const today = new Date();
@@ -398,11 +434,11 @@ function calculateAttendance(driver) {
     }
 
     const totalDays = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
-    let daysPresent = 0;
-    if(currentDay === 26){
-        daysPresent = 0;
-    }
-    if(driver.status === "Present") daysPresent++;
+    let daysPresent = 22;
+    // if(currentDay === 26){
+    //     daysPresent = 0;
+    // }
+    // if(driver.status === "Present") daysPresent++;
     const percentage = ((daysPresent / totalDays) * 100).toFixed(2);
 
     const percentageElement = document.getElementById('attendancePercentage');
@@ -538,99 +574,131 @@ if(loginPage) {
     }
 }
 
-const DriverSideBar = document.getElementById("Driversidebar");
-if(DriverSideBar) {
-    function closemenu(){
-        document.getElementsByClassName("sidebar")[0].style = "left:-250px"
-        document.getElementsByClassName("menu-icon")[0].style = "display:block"
-        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:-200px"
-    }
-    function showmenu(){
-        document.getElementsByClassName("sidebar")[0].style = "left:0px"
-        document.getElementsByClassName("menu-icon")[0].style = "display:none"
-        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:0px"
-    }
+const navItems = document.querySelectorAll('.nav-item');
+if (navItems.length) {
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+
+      item.classList.add('active');
+      const sectionId = item.getAttribute('data-section');
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) targetSection.classList.add('active');
+
+      if (window.innerWidth <= 768) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) sidebar.classList.add('hide');
+      }
+    });
+  });
 }
 
-    function closemenu(){
-        document.getElementsByClassName("menu-bar")[0].style = "left:-250px"
-        document.getElementsByClassName("menu-icon")[0].style = "display:block"
-        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:-200px"
-    }
-    function showmenu(){
-        document.getElementsByClassName("menu-bar")[0].style = "left:0px"
-        document.getElementsByClassName("menu-icon")[0].style = "display:none"
-        document.getElementsByClassName("dashboard-details")[0].style = "margin-left:0px"
-    }
-    
-    const resultBlock = document.getElementById("resultBlock");
+const hamburger = document.querySelector('.hamburger');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) sidebar.classList.add('active');
+  });
+}
 
-    function searchdetails(){
-        // BUS Details
-        let opt = document.getElementsByClassName("choose-opt")[0].value;
-        if(opt === "bus"){
-        let num = Number(document.getElementsByClassName("details-search")[0].value.trim()); 
-        
-        let res 
-        if(isNaN(num)){
-            res = `<h2>Enter Valid Details</h2>`;  
+const closeBtn = document.querySelector('.close-btn');
+if (closeBtn) {
+  closeBtn.addEventListener('click', () => {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) sidebar.classList.remove('active');
+  });
+}
+
+const menuIcon = document.getElementById('menuIcon');
+if (menuIcon) {
+  menuIcon.addEventListener('click', () => {
+    const navItems = document.querySelector('.nav-items');
+    if (navItems) navItems.classList.toggle('active');
+  });
+}
+
+
+function closemenu(){
+    document.getElementsByClassName("menu-bar")[0].style = "left:-250px"
+    document.getElementsByClassName("menu-icon")[0].style = "display:block"
+    document.getElementsByClassName("dashboard-details")[0].style = "margin-left:-200px"
+}
+function showmenu(){
+    document.getElementsByClassName("menu-bar")[0].style = "left:0px"
+    document.getElementsByClassName("menu-icon")[0].style = "display:none"
+    document.getElementsByClassName("dashboard-details")[0].style = "margin-left:0px"
+}
+
+const resultBlock = document.getElementById("resultBlock");
+
+function searchdetails(){
+    // BUS Details
+    let opt = document.getElementsByClassName("choose-opt")[0].value;
+    if(opt === "bus"){
+    let num = Number(document.getElementsByClassName("details-search")[0].value.trim()); 
+    
+    let res 
+    if(isNaN(num)){
+        res = `<h2>Enter Valid Details</h2>`;  
+        document.getElementsByClassName("result")[0].innerHTML = res;
+        document.getElementsByClassName("result")[0].style = "display:flex;"
+        return;
+    }
+
+    let bus = buses.find(bus => bus.busId === num);
+    if(bus){
+        res = `<p><b>Bus ID</b> :- ${bus.busId}</p>
+                <p><b>Bus NO</b>:- ${bus.busNo}</p> 
+                <p><b>Bus Route</b> :- ${bus.route}</p> 
+                <p><b>Bus Driver</b> :- ${bus.driver}</p> 
+                <p><b>Bus meter Reading</b> :- ${bus.meterReading}</p> 
+                <p><b>Bus Last fuel</b> :- ${bus.lastFuelDate}</p> 
+                <p><b>Bus Last garage<b> :- ${bus.lastGarageDate}</p> `
+    }
+    else{
+    res = '<p>Bus Not Found!</p>';
+    }
+
+    document.getElementsByClassName("result")[0].innerHTML = res
+    document.getElementsByClassName("result")[0].style = "display:flex;"
+    
+}
+
+
+else{
+    // DRIVER DETAILS
+        let drvId = document.getElementsByClassName("details-search")[0].value.trim();
+
+        let res
+        console.log(drvId)
+        if(drvId === ""){
+            res = `<h1>Enter Valid Details</h2>`;  
             document.getElementsByClassName("result")[0].innerHTML = res;
             document.getElementsByClassName("result")[0].style = "display:flex;"
             return;
         }
 
-        let bus = buses.find(bus => bus.busId === num);
-        if(bus){
-            res = `<p><b>Bus ID</b> :- ${bus.busId}</p>
-                    <p><b>Bus NO</b>:- ${bus.busNo}</p> 
-                    <p><b>Bus Route</b> :- ${bus.route}</p> 
-                    <p><b>Bus Driver</b> :- ${bus.driver}</p> 
-                    <p><b>Bus meter Reading</b> :- ${bus.meterReading}</p> 
-                    <p><b>Bus Last fuel</b> :- ${bus.lastFuelDate}</p> 
-                    <p><b>Bus Last garage<b> :- ${bus.lastGarageDate}</p> `
+        let drv = drivers.find(drv => drv.driverId === drvId)
+
+        if(drv){
+                
+            res = `<p><b>Driver Name</b> :- ${drv.driverName}
+                    <p><b>Driver ID</b> :- ${drv.driverId}
+                    <p><b>Driver BUS</b> :- ${drv.driverBusId}
+                    <p><b>Driver Location</b> :- ${drv.driverLocation}
+                    <p><b>Driver status</b> :- ${drv.status}`
         }
+
         else{
-        res = '<p>Bus Not Found!</p>';
+
+            res = '<p>Bus Not Found!</p>';
         }
-    
-        document.getElementsByClassName("result")[0].innerHTML = res
+        document.getElementsByClassName("result")[0].innerHTML = res;
         document.getElementsByClassName("result")[0].style = "display:flex;"
-        
-    }
-    
+    console.log(res);
+}
+//  resultBlock.style.transform = "rotateX('-90deg')";
 
-    else{
-        // DRIVER DETAILS
-            let drvId = document.getElementsByClassName("details-search")[0].value.trim();
-
-            let res
-            console.log(drvId)
-            if(drvId === ""){
-                res = `<h1>Enter Valid Details</h2>`;  
-                document.getElementsByClassName("result")[0].innerHTML = res;
-                document.getElementsByClassName("result")[0].style = "display:flex;"
-                return;
-            }
-
-            let drv = drivers.find(drv => drv.driverId === drvId)
-
-            if(drv){
-                    
-                res = `<p><b>Driver Name</b> :- ${drv.driverName}
-                        <p><b>Driver ID</b> :- ${drv.driverId}
-                        <p><b>Driver BUS</b> :- ${drv.driverBusId}
-                        <p><b>Driver Location</b> :- ${drv.driverLocation}
-                        <p><b>Driver status</b> :- ${drv.status}`
-            }
-
-            else{
-
-                res = '<p>Bus Not Found!</p>';
-            }
-            document.getElementsByClassName("result")[0].innerHTML = res;
-            document.getElementsByClassName("result")[0].style = "display:flex;"
-        console.log(res);
-    }
-    //  resultBlock.style.transform = "rotateX('-90deg')";
-    
-    }
+}

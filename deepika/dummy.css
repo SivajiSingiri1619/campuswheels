@@ -1,442 +1,532 @@
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(180deg, #F7FAFC, #EDF2F7);
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: #1A202C;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .container {
-            display: flex;
-            flex-grow: 1;
-            width: 100%;
-            min-height: calc(100vh - 60px);
-        }
-
-        .sidebar {
-            width: 200px;
-            background: #2D3748;
-            padding: 16px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            position: fixed;
-            height: 100svh;
-            top: 40;
-            left: 0;
-            z-index: 100;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar.hidden {
-            transform: translateX(-200px);
-        }
-
-        .hamburger {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            background: #2D3748;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 101;
-            display: none;
-        }
-
-        .close-btn {
-            position: absolute;
-            left: 130px;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            display: none;
-        }
-
-        .sidebar h2 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #4A90E2;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .sidebar button {
-            background: transparent;
-            border: 1px solid #4A90E2;
-            padding: 8px 12px;
-            border-radius: 6px;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .sidebar button.active {
-            background: #4A90E2;
-            color: #2D3748;
-        }
-
-        .sidebar button:hover {
-            background: #4A90E2;
-            color: #2D3748;
-            animation: tabHover 0.6s ease-in-out;
-        }
-
-        @keyframes tabHover {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        main {
-            margin-left: 200px;
-            flex-grow: 1;
-            padding: 24px;
-            width: calc(100% - 200px);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #2D3748;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-            animation: slideUp 0.5s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card {
-            background: #FFFFFF;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #4A90E2;
-        }
-
-        button {
-            font-size: 16px;
-            padding: 12px 24px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        button.submit {
-            background: #2D3748;
-            color: white;
-        }
-
-        button.submit:hover:not(:disabled) {
-            background: #2A4365;
-            animation: buttonHover 0.8s ease-in-out;
-        }
-
-        @keyframes buttonHover {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        button.fuel {
-            background: #38A169;
-            color: white;
-        }
-
-        button.fuel:hover:not(.active) {
-            background: #2F855A;
-        }
-
-        button.garage {
-            background: #D69E2E;
-            color: white;
-        }
-
-        button.garage:hover:not(.active) {
-            background: #B7791F;
-        }
-
-        button.date {
-            background: #718096;
-            color: white;
-        }
-
-        button.date-selected {
-            background: #4A90E2;
-            color: white;
-        }
-
-        button.date:hover {
-            background: #3B82F6;
-            animation: buttonHover 0.8s ease-in-out;
-        }
-
-        input, select, textarea {
-            font-size: 16px;
-            padding: 12px;
-            border: 1px solid #718096;
-            border-radius: 6px;
-            width: 100%;
-            background: white;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: #4A90E2;
-            outline: none;
-        }
-
-        label {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            display: block;
-            color: #1A202C;
-        }
-
-        .flex-container {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .swap-present, .swap-absent {
-            width: 100px;
-            height: 50px;
-            border-radius: 25px;
-            position: absolute;
-            right: 32px;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: background 0.3s;
-        }
-
-        .swap-present {
-            background: #68D391;
-        }
-
-        .swap-absent {
-            background: #F687B3;
-        }
-
-        .attendance-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            position: absolute;
-            top: 5px;
-            transition: left 0.3s ease;
-            animation: bounceIn 0.6s ease-out;
-        }
-
-        .attendance-circle.present {
-            background: #38A169;
-            left: 55px;
-        }
-
-        .attendance-circle.absent {
-            background: #E53E3E;
-            left: 5px;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .tick-mark {
-            display: none;
-            color: #38A169;
-            font-size: 20px;
-            margin-left: 8px;
-            animation: tickAppear 0.5s ease-in;
-        }
-
-        @keyframes tickAppear {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .leave-dates {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 12px;
-        }
-
-        .status {
-            margin-top: 16px;
-            font-size: 16px;
-            color: #718096;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        footer {
-            background: #2D3748;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            width: 100%;
-            position: relative;
-            bottom: 0;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-200px);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .sidebar.active .close-btn {
-                display: block;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .sidebar.active + .hamburger {
-                display: none;
-            }
-
-            main {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            .card {
-                padding: 12px;
-            }
-
-            .flex-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .swap-present, .swap-absent {
-                right: 12px;
-                top: auto;
-                bottom: 12px;
-                transform: none;
-            }
-
-            button {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .leave-dates {
-                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar {
-                width: 180px;
-            }
-
-            .sidebar h2 {
-                font-size: 20px;
-            }
-
-            header h1 {
-                font-size: 24px;
-            }
-
-            .card {
-                padding: 8px;
-            }
-
-            button {
-                padding: 8px 16px;
-                font-size: 12px;
-            }
-
-            input, select, textarea {
-                padding: 8px;
-                font-size: 12px;
-            }
-
-            label {
-                font-size: 12px;
-            }
-
-            .swap-present, .swap-absent {
-                width: 80px;
-                height: 40px;
-            }
-
-            .attendance-circle {
-                width: 32px;
-                height: 32px;
-                font-size: 12px;
-            }
-
-            .attendance-circle.present {
-                left: 43px;
-            }
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    margin-top: 80px; /* Space for fixed header */
+}
+
+.sidebar {
+    width: 240px;
+    background: #1a1a1a;
+    color: #fff;
+    position: fixed;
+    top: 80px; /* Below header */
+    left: 0;
+    height: calc(100vh - 80px); /* Adjust height to exclude header */
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.hide {
+    transform: translateX(-100%);
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    background: #1a1a1a;
+    position: relative;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #FFD700;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px; /* Adjusted for better alignment */
+    right: 15px;
+    color: #FFD700;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none; /* Hidden by default, shown only on small screens when active */
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    top: 10px; /* Align items to the top */
+    height: 100%; /* Ensure it takes full height */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Removed padding to eliminate gap at top */
+    width: 100%; /* Ensure full width */
+}
+
+.nav-item {
+    display: block;
+    padding: 15px 20px;
+    color: #ccc;
+    text-decoration: none;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+    width: 100%; /* Ensure full width */
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(255, 215, 0, 0.08);
+    color: #FFD700;
+    border-left: 4px solid #FFD700;
+}
+
+.hamburger {
+    display: none; /* Hidden by default, shown only on small screens */
+    position: fixed;
+    top: 20px; /* Adjusted for better alignment */
+    left: 20px;
+    background: #0B192C;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px; /* Increased padding for better click area */
+    border-radius: 4px; /* Rounded corners */
+}
+
+main {
+    margin-left: 240px;
+    flex-grow: 1;
+    padding: 20px;
+    width: calc(100% - 240px);
+    background: #ffffff;
+    color: #ccc;
+    transition: all 0.3s ease;
+    margin-top: 0; /* Adjusted for header and sidebar positioning */
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(60deg, white, white, orange);
+    border-bottom: 0.5px solid orange;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+nav {
+    height: 100%;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.nav-items h1 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+}
+
+.logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.menu-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.section {
+    display: none;
+    padding: 20px;
+    background-color: transparent; /* Reverted section background to transparent */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+.card {
+    background-color: rgba(239, 210, 157, 0.751); /* Applied to cards only */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.card * {
+    color: #000000; /* Black color for text inside cards */
+}
+
+h2 {
+    color: #FFA500; /* Orange color for h2 tags */
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #FFD700;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFD700;
+    color: #1a1a1a;
+}
+
+button:hover:not(:disabled) {
+    background: rgba(255, 215, 0, 0.8);
+    color: #1a1a1a;
+}
+
+button.submit {
+    background: #FF6B00;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+button.submit:hover:not(:disabled) {
+    background: #c7417b;
+    color: #ffffff;
+}
+
+button.fuel {
+    background: #f5487f;
+    color: #ffffff;
+}
+
+button.fuel:hover:not(.active) {
+    background: #c7417b;
+    color: #ffffff;
+}
+
+button.garage {
+    background: orange;
+    color: #ffffff;
+}
+
+button.garage:hover:not(.active) {
+    background: #c7417b;
+    color: #ffffff;
+}
+
+button.date {
+    background: #000000;
+    color: #ffffff;
+}
+
+button.date-selected {
+    background: #0077B6;
+    color: #ffffff;
+}
+
+button.date:hover {
+    background: #c7417b;
+    color: #ffffff;
+}
+
+input, select, textarea {
+    font-size: 14px;
+    padding: 10px;
+    border: 2px solid #ccc; /* Thicker border for visibility */
+    border-radius: 8px; /* Rounded corners */
+    width: 100%;
+    background: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #FFD700;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Glow effect on focus */
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #FFD700;
+}
+
+.flex-container {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.swap-present, .swap-absent {
+    width: 100px;
+    height: 50px;
+    border-radius: 25px;
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.3s;
+}
+
+.swap-present {
+    background: #90EE90; /* Light green shade */
+    color: #1a1a1a;
+}
+
+.swap-absent {
+    background: #FFB6C1; /* Light red shade */
+}
+
+.attendance-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    position: absolute;
+    top: 5px;
+    transition: left 0.3s ease;
+}
+
+.attendance-circle.present {
+    left: 55px;
+    background: #11a411; /* Dark green */
+    color: #ffffff;
+}
+
+.attendance-circle.absent {
+    background: #FF0000; /* Red */
+    left: 5px;
+    color: #ffffff;
+}
+
+.tick-mark {
+    display: none;
+    color: #FFD700;
+    font-size: 20px;
+    margin-left: 8px;
+    animation: tickAppear 0.5s ease-in;
+}
+
+@keyframes tickAppear {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.leave-dates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 12px;
+}
+
+.status {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    background: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    padding: 16px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+    width: 200px; /* Reduced width for mobile */
+    top: 60px; /* Adjusted for smaller header on mobile */
+    height: calc(100vh - 60px);
+    transform: translateX(-100%); /* Hidden by default on small screens */
+    }
+
+    .sidebar.active {
+    transform: translateX(0); /* Shown when active */
+    }
+
+    .sidebar.active .close-btn {
+    display: block; /* Show close button on small screens when active */
+    }
+
+    .hamburger {
+    display: block; /* Show menu button on small screens */
+    }
+
+    .sidebar.active + .hamburger {
+    display: none; /* Hide menu button when sidebar is active */
+    }
+
+    main {
+    margin-left: 0;
+    width: 100%;
+    }
+
+    .header {
+    height: 60px;
+    }
+
+    .logo img {
+    height: 40px;
+    }
+
+    .section {
+    padding: 15px;
+    }
+
+    .flex-container {
+    flex-direction: column;
+    align-items: flex-start;
+    }
+
+    .swap-present, .swap-absent {
+    right: 12px;
+    top: auto;
+    bottom: 12px;
+    transform: none;
+    }
+
+    button {
+    width: 100%;
+    justify-content: center;
+    }
+
+    .leave-dates {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    }
+
+    .menu-icon {
+    display: block;
+    }
+
+    .nav-items {
+    display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .sidebar {
+    transform: translateX(0); /* Always visible on big screens */
+    }
+
+    .hamburger {
+    display: none; /* Hide menu button on big screens */
+    }
+
+    .close-btn {
+    display: none; /* Hide close button on big screens */
+    }
+
+    main {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+    width: 180px;
+    }
+
+    main {
+    padding: 15px;
+    }
+
+    .section {
+    padding: 10px;
+    }
+
+    button {
+    padding: 8px 16px;
+    font-size: 12px;
+    }
+
+    input, select, textarea {
+    padding: 8px;
+    font-size: 12px;
+    }
+
+    label {
+    font-size: 12px;
+    }
+
+    .swap-present, .swap-absent {
+    width: 80px;
+    height: 40px;
+    }
+
+    .attendance-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+    }
+
+    .attendance-circle.present {
+    left: 43px;
+    }
+}
