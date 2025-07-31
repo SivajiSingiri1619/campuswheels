@@ -6,69 +6,90 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-  <title>Document</title>
+  <title>Campus Wheels</title>
 </head>
 <body>
-           <div class="header">
-               <nav>
-                 <div class="logo"><img src="RN wheels logo.png" alt=""></div>
-                 <div class="nav-items">
-                 <div><h1>CAMPUS WHEELS</h1></div>
-                 </div>
-                 <div class="menu-icon" onclick="showmenu()">&#8801;</div>
-               </nav>
-          </div>
+  <div class="header">
+    <nav>
+      <div class="logo"><img src="RN wheels logo.png" alt="Campus Wheels Logo"></div>
+      <div class="nav-items">
+        <div><h1>CAMPUS WHEELS</h1></div>
+      </div>
+      <div class="menu-icon" id="menuIcon">&#8801;</div>
+    </nav>
+  </div>
 
+  <div class="menu">
+    <div class="menu-bar" id="menuBar">
+      <h1>Admin</h1>
+      <div class="close-bar" id="closeBar">&times;</div>
+      <div class="opt">Profile</div>
+      <div class="opt">Drivers</div>
+      <div class="opt">Leaves</div>
+      <div class="opt">Garage</div>
+      <div class="opt">Buses</div>
+      <div class="opt">others</div>
+    </div>
+    
+    <div class="dashboard-details" id="dashboardDetails">
+      <div class="counts">
+        <div class="count">
+          <div class="icon"><i class="fas fa-users"></i></div>
+          <span id="driver-count">230</span>
+          <p>Students</p>
+        </div>
+        <div class="count">
+          <div class="icon"><i class="fas fa-user-tie"></i></div>
+          <span id="student-count">340</span>
+          <p>Drivers</p>
+        </div>
+        <div class="count">
+          <div class="icon"><i class="fas fa-bus"></i></div>
+          <span id="bus-count">450</span>
+          <p>Buses</p>
+        </div>
+      </div>
 
-           <div class="menu">
-               <div class="menu-bar">
-                    <div class="close-bar" onclick="closemenu()">&times;</div>
-                    <div class="opt">Profile</div>
-                    <div class="opt">Drivers</div>
-                    <div class="opt">Leaves</div>
-                    <div class="opt">Garage</div>
-                    <div class="opt">Buses</div>
-                    <div class="opt">others</div>
-               </div>
-               
-               <div class="dashboard-details" id="dashboardDetails">
-                    <div class="counts">
-                         <div class="count">
-                              <div class="icon"><i class="fas fa-users"></i></div>
-                                   <span id="driver-count">230</span>
-                                   <p>Students</p>
-                         </div>
-                         <div class="count">
-                              <div class="icon"><i class="fas fa-user-tie"></i></div>
-                                   <span id="student-count">340</span>
-                                   <p>Drivers</p>
-                         </div>
-                         <div class="count">
-                              <div class="icon"><i class="fas fa-bus"></i></div>
-                                   <span id="bus-count">450</span>
-                                   
-                                   <p>Buses</p>
-                         </div>
-                    </div>
+      <div class="search" id="searchDetails"> 
+        <div class="search-bar">
+          <input type="text" placeholder="Search bus number" class="details-search" id="busId">
+          <select name="options" class="choose-opt">
+            <option value="bus">BUS</option>
+            <option value="driver">Driver</option>
+          </select>
+          <div class="enter-btn" id="searchBtn"><i class="fas fa-search"></i></div>
+        </div>
+      </div>
 
-                    <div class="search" id="searchDetails"> 
-                         <div class="search-bar">
-                         <input type="text" placeholder="Search bus number" class="details-search" id="busId">
-                         
-                         <select name="options" class="choose-opt">
-                              <option value="bus">BUS</option>
-                              <option value="driver">Driver</option>
-                         </select>
-                         <div class="enter-btn" onclick="searchdetails()"><i class="fas fa-search"></i></div>
-                         </div>
-                         
-                    </div>
+      <div class="result" id="resultBlock"></div>
+    </div>
+  </div>
+  <script src="../deepika/script.js">
+     const menuIcon = document.getElementById('menuIcon');
+const menuBar = document.getElementById('menuBar');
+const closeBar = document.getElementById('closeBar');
+const dashboardDetails = document.getElementById('dashboardDetails');
+const searchBtn = document.getElementById('searchBtn');
 
-                    <div class="result" id="resultBlock">
-                    </div>
-               </div>
-          </div>
-           <script src="../deepika/script.js"></script>
+function showmenu() {
+  menuBar.classList.add('active');
+  dashboardDetails.classList.remove('hidden');
+}
+
+function closemenu() {
+  menuBar.classList.remove('active');
+  // Keep dashboard-details visible, don't add 'hidden'
+}
+
+menuIcon.addEventListener('click', () => {
+  showmenu();
+});
+
+closeBar.addEventListener('click', () => {
+  closemenu();
+});
+
+searchBtn.addEventListener('click', searchdetails);
+  </script>
 </body>
 </html>
