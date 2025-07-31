@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: white;
+  background: url("background.png") no-repeat center center fixed;
   padding: 40px;
   margin: 0;
   transition: background 0.3s ease;
@@ -80,11 +80,7 @@ h1 {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
-#apply-filters:hover,
-#reset-filters:hover {
-  background-color: #ffe082;
-  transform: scale(1.05);
-}
+
 
 .leave-card1,
 .leave-card2,
@@ -97,12 +93,7 @@ h1 {
   animation: fadeInUp 0.5s ease-in-out;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.leave-card1:hover,
-.leave-card2:hover,
-.leave-card3:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
+
 
 .approve-btn, .reject-btn {
   padding: 8px 14px;
@@ -170,7 +161,7 @@ h1 {
   border-left: 4px solid transparent;
   transition: all 0.3s ease;
 }
-.nav-item:hover,
+
 .nav-item.active {
   background: rgba(255, 215, 0, 0.1);
   color: #FFD700;
@@ -315,10 +306,26 @@ h1 {
   display: flex;
   align-items: center;
 }
+<<<<<<< HEAD
 .logo img {
   height: 60px;
   width: auto;
   object-fit: contain;
+=======
+
+.header-left .logo {
+  height: 50px;
+  object-fit: contain;
+}
+
+.header-right h1 {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  right: -0px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a1a1a;
+>>>>>>> c390ae6d790d4a697a2979db66520aaafadc3d19
 }
   
     

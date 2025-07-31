@@ -581,13 +581,18 @@ if(DriverSideBar) {
 
         let bus = buses.find(bus => bus.busId === num);
         if(bus){
-            res = `<p><b>Bus ID</b> :- ${bus.busId}</p>
-                    <p><b>Bus NO</b>:- ${bus.busNo}</p> 
-                    <p><b>Bus Route</b> :- ${bus.route}</p> 
-                    <p><b>Bus Driver</b> :- ${bus.driver}</p> 
-                    <p><b>Bus meter Reading</b> :- ${bus.meterReading}</p> 
-                    <p><b>Bus Last fuel</b> :- ${bus.lastFuelDate}</p> 
-                    <p><b>Bus Last garage<b> :- ${bus.lastGarageDate}</p> `
+     res = `
+  
+  <div class="result-content">
+    <p><b>Bus ID</b>: ${bus.busId}</p>
+    <p><b>Bus NO</b>: ${bus.busNo}</p> 
+    <p><b>Bus Route</b>: ${bus.route}</p> 
+    <p><b>Bus Driver</b>: ${bus.driver}</p> 
+    <p><b>Bus Meter Reading</b>: ${bus.meterReading}</p> 
+    <p><b>Bus Last Fuel</b>: ${bus.lastFuelDate}</p> 
+    <p><b>Bus Last Garage</b>: ${bus.lastGarageDate}</p>
+  </div>
+`
         }
         else{
         res = '<p>Bus Not Found!</p>';
@@ -616,11 +621,13 @@ if(DriverSideBar) {
 
             if(drv){
                     
-                res = `<p><b>Driver Name</b> :- ${drv.driverName}
+                res = `<div class="result-content">
+                <p><b>Driver Name</b> :- ${drv.driverName}
                         <p><b>Driver ID</b> :- ${drv.driverId}
                         <p><b>Driver BUS</b> :- ${drv.driverBusId}
                         <p><b>Driver Location</b> :- ${drv.driverLocation}
-                        <p><b>Driver status</b> :- ${drv.status}`
+                        <p><b>Driver status</b> :- ${drv.status}
+                        </div>`
             }
 
             else{

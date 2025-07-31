@@ -6,11 +6,17 @@
 }
 
 body {
- background: white;
+  background: url("background.png") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Segoe UI", sans-serif;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
 }
 
 h2 {
+  
   font-size: 28px;
   text-align: center;
   margin-bottom: 30px;
@@ -23,9 +29,9 @@ h2 {
   background: #1a1a1a;
   color: #fff;
   position: fixed;
-  top: 0;
+  top: 10%;
   left: 0;
-  height: 100vh;
+  height: 90%;
   transition: transform 0.3s ease;
   z-index: 1000;
 }
@@ -210,4 +216,31 @@ h2 {
   .container {
     flex-direction: column;
   }
+}
+.top-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, white, #ffa726);
+  padding: 5px 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+}
+
+.header-left .logo {
+  height: 50px;
+  object-fit: contain;
+}
+
+.header-right h1 {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  right: -0px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a1a1a;
 }
