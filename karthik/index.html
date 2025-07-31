@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="intro-screen">
@@ -19,15 +25,15 @@
   </div>
   <div id="main-page">
       <header>
-        <img id="logo" src="./dataset/RN wheels logo.png" alt="logo">
+        <!-- <img id="logo" src="./dataset/RN wheels logo.png" alt="logo"> -->
         <span class="title1">Campus</span>
-        <span class="title2">Wheels</span>
+        <span class="title2">wheels</span>
       </header>
 
 
-      <main>
+      <main id="LoginPage">
         <video autoplay muted loop id="bg-video">
-          <source src="./dataset/WhatsApp Video 2025-07-29 at 15.33.56_4f56e191.mp4" type="video/mp4">
+          <source src="./dataset/bg-video.mp4" type="video/mp4">
         </video>
 
         <div class="login-container">
@@ -46,11 +52,12 @@
           <div class="login-box">
             <h2>Driver Login</h2>
             <form>
-              <input type="text" placeholder="Driver ID" required />
-              <input type="password" placeholder="Password" required />
-              <button type="submit">Login</button>
+              <input type="text" placeholder="Driver ID" id="LoginDriverId" />
+              <input type="password" placeholder="Password" id="LoginDriverPassword" />
+              <button type="submit" id="driverlogin">Login</button>
             </form>
             <p>Only for authorized drivers</p>
+            <div class="message" id="LoginInvalid"></div>  
           </div>
           <div onclick="goback()" class="login-back">Back</div>
         </div>
@@ -59,49 +66,18 @@
           <div class="login-box">
             <h2>Admin Login</h2>
             <form>
-              <input type="text" placeholder="Admin ID" required />
-              <input type="password" placeholder="Password" required />
-              <button type="submit">Login</button>
+              <input type="text" placeholder="Admin ID" id="LoginAdminId"/>
+              <input type="password" placeholder="Password" id="LoginAdminPassword" />
+              <button type="submit" id="adminlogin">Login</button>
             </form>
             <p>Only for Admin</p>
+            <div class="message" id="LoginAdminInvalid"></div>
           </div>
           <div onclick="goback()" class="login-back">Back</div>
         </div>
       </main>
   </div>
 
-  <script>
-    const video = document.getElementById("intro-video");
-    const introScreen = document.getElementById("intro-screen");
-    const mainPage = document.getElementById("main-page");
-
-    function transitionToMain() {
-      introScreen.classList.add("fade-out");
-
-      // After fade-out animation ends
-      setTimeout(() => {
-        introScreen.style.display = "none";
-        mainPage.classList.add("reveal");
-      },100); // matches fade-out transition time
-    }
-    video.onended = transitionToMain;
-    setTimeout(transitionToMain, 4000);
-
-
-
-    function driversignin(){
-      document.querySelector(".login-container").style.display = "none";
-      document.querySelector(".login-container-driver").style.display = "flex";
-    }
-    function adminsignin(){
-      document.querySelector(".login-container").style.display = "none";
-      document.querySelector(".login-container-admin").style.display = "flex";
-    }
-    function goback(){
-      document.querySelector(".login-container").style.display = "flex";
-      document.querySelector(".login-container-driver").style.display = "none";
-      document.querySelector(".login-container-admin").style.display = "none";
-    }
-  </script>
+  <script src="../deepika/script.js"></script>
 </body>
 </html>

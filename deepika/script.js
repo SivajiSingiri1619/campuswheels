@@ -227,7 +227,7 @@ if(DriverLoginButton) {
             localStorage.setItem("loggedInDriverId",driver.driverId);
             loginInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
             setTimeout(() => {
-                window.location.href = "driver_page.html";
+                window.location.replace("../deepika/driver_page.html");
             }, 500);
         }
         else  {
@@ -258,7 +258,7 @@ if(AdminLoginButton){
             localStorage.setItem("loggedInAdminId",admin.adminId);
             loginAdminInvalid.innerHTML = '<p style="color: green;">Login Successful!</p>';
             setTimeout(() => {
-                window.location.href = "dummy.html";
+                window.location.replace("../nitya/admin4.html");
             }, 500);
         }
         else  {
@@ -283,7 +283,7 @@ function getLoggedInAdmin() {
 if (document.getElementById("DriverHello")) {
   const driver = getLoggedInDriver();
   if (!driver) {
-    window.location.href = "login.html";
+    window.location.replace("../karthik/index.html");
   } else {
     DriverDetails(driver);
     Attendance(driver);
@@ -299,7 +299,7 @@ if (document.getElementById("DriverHello")) {
 if(document.getElementById("AdminWelcome")) {
     const admin = getLoggedInAdmin();
     if(!admin) {
-        window.location.href = "login.html";
+        window.location.replace("../karthik/index.html");
     }
     else {
         AdminDetails(admin);
@@ -438,4 +438,39 @@ if(button){
     const today = new Date();
     dateSpan.textContent = today.toDateString();
     });
+}
+
+const loginPage = document.getElementById("LoginPage");
+if(loginPage) {
+    const video = document.getElementById("intro-video");
+    const introScreen = document.getElementById("intro-screen");
+    const mainPage = document.getElementById("main-page");
+
+    function transitionToMain() {
+      introScreen.classList.add("fade-out");
+
+      // After fade-out animation ends
+      setTimeout(() => {
+        introScreen.style.display = "none";
+        mainPage.classList.add("reveal");
+      },100); // matches fade-out transition time
+    }
+    video.onended = transitionToMain;
+    setTimeout(transitionToMain, 4000);
+
+
+
+    function driversignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-driver").style.display = "flex";
+    }
+    function adminsignin(){
+      document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "flex";
+    }
+    function goback(){
+      document.querySelector(".login-container").style.display = "flex";
+      document.querySelector(".login-container-driver").style.display = "none";
+      document.querySelector(".login-container-admin").style.display = "none";
+    }
 }
