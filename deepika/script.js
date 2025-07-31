@@ -665,40 +665,40 @@ function searchdetails(){
     document.getElementsByClassName("result")[0].style = "display:flex;"
     
 }
-    else{
-        // DRIVER DETAILS
-            let drvId = document.getElementsByClassName("details-search")[0].value.trim();
+else{
+    // DRIVER DETAILS
+        let drvId = document.getElementsByClassName("details-search")[0].value.trim();
 
-            let res
-            console.log(drvId)
-            if(drvId === ""){
-                res = `<h1>Enter Valid Details</h2>`;  
-                document.getElementsByClassName("result")[0].innerHTML = res;
-                document.getElementsByClassName("result")[0].style = "display:flex;"
-                return;
-            }
-
-            let drv = drivers.find(drv => drv.driverId === drvId)
-
-            if(drv){
-                    
-                res = `<div class="result-content">
-                <p><b>Driver Name</b> :- ${drv.driverName}
-                        <p><b>Driver ID</b> :- ${drv.driverId}
-                        <p><b>Driver BUS</b> :- ${drv.driverBusId}
-                        <p><b>Driver Location</b> :- ${drv.driverLocation}
-                        <p><b>Driver status</b> :- ${drv.status}
-                        </div>`
-            }
-
-            else{
-
-                res = '<p>Bus Not Found!</p>';
-            }
+        let res
+        console.log(drvId)
+        if(drvId === ""){
+            res = `<h1>Enter Valid Details</h2>`;  
             document.getElementsByClassName("result")[0].innerHTML = res;
             document.getElementsByClassName("result")[0].style = "display:flex;"
-        console.log(res);
-    }
-    //  resultBlock.style.transform = "rotateX('-90deg')";
-    
-    }
+            return;
+        }
+
+        let drv = drivers.find(drv => drv.driverId === drvId)
+
+        if(drv){
+                
+            res = `<div class="result-content">
+            <p><b>Driver Name</b> :- ${drv.driverName}
+                    <p><b>Driver ID</b> :- ${drv.driverId}
+                    <p><b>Driver BUS</b> :- ${drv.driverBusId}
+                    <p><b>Driver Location</b> :- ${drv.driverLocation}
+                    <p><b>Driver status</b> :- ${drv.status}
+                    </div>`
+        }
+
+        else{
+
+            res = '<p>Bus Not Found!</p>';
+        }
+        document.getElementsByClassName("result")[0].innerHTML = res;
+        document.getElementsByClassName("result")[0].style = "display:flex;"
+    console.log(res);
+}
+//  resultBlock.style.transform = "rotateX('-90deg')";
+
+}
