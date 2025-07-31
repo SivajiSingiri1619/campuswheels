@@ -277,6 +277,13 @@ h1 {
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
+.sidebar-nav .item a.active {
+  background-color: #1565c0;
+  font-weight: bold;
+  border-left: 4px solid #ffffff;
+  color: white;
+}
+
 
 
 .close-btn {
