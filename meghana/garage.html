@@ -56,28 +56,30 @@ body {
   border-left: 4px solid orange;
 }
 
-.menu-toggle,
-.close-btn {
-  display: none;
-  position: fixed;
-  font-size: 24px;
-  background: none;
-  border: none;
-  color: #222;
-  z-index: 1001;
-  cursor: pointer;
-}
+ .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: #222;
+      z-index: 1001;
+      cursor: pointer;
+    }
 
-.menu-toggle {
-  top: 20px;
-  right: 20px;
-}
-
-.close-btn {
-  top: 15px;
-  right: 20px;
-  color: white;
-}
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 20px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: none;
+    }
 
 .main-content {
   margin-left: 250px;
@@ -141,21 +143,24 @@ h1 {
 /* Responsive */
 @media (max-width: 992px) {
   .sidebar {
-    transform: translateX(-100%);
-  }
+        transform: translateX(-100%);
+      }
 
-  .sidebar.show {
-    transform: translateX(0);
-  }
+      .sidebar.show {
+        transform: translateX(0);
+      }
 
-  .main-content {
-    margin-left: 0;
-  }
+      .main-content {
+        margin-left: 0;
+      }
 
-  .menu-toggle,
-  .close-btn {
-    display: block;
-  }
+      .menu-toggle {
+        display: block;
+      }
+
+      .close-btn {
+        display: block;
+      }
 }
 
 @media (max-width: 768px) {
@@ -179,14 +184,16 @@ h1 {
 </head>
 <body>
 
+<!-- Sidebar Toggle Button -->
   <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <button class="close-btn" onclick="toggleSidebar()">✖</button>
     <h2>Services</h2>
     <a href="index.html">Dashboard</a>
     <a href="garage.html" class="active">Garage</a>
-    <a href="fuel.html">Fuel</a>
+    <a href="fuel.html" >Fuel</a>
   </div>
 
   <div class="main-content">
@@ -271,6 +278,6 @@ h1 {
       </div>
     </div>
   </div>
-
+<script src="garage.js"></script>
 </body>
 </html>
