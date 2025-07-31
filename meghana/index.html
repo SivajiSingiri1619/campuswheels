@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Service Dashboard</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fffbd5, #f0f0f0);
+      color: #222;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: #1a1a1a;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.hide {
+      transform: translateX(-100%);
+    }
+
+    .sidebar-header {
+      padding: 20px;
+      text-align: center;
+      background: #000;
+      position: relative;
+    }
+
+    .sidebar-header h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #FFD700;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #FFD700;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .sidebar-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-item {
+      display: block;
+      padding: 15px 20px;
+      color: #ccc;
+      text-decoration: none;
+      border-left: 4px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: rgba(255, 215, 0, 0.08);
+      color: #FFD700;
+      border-left: 4px solid #FFD700;
+    }
+
+    .menu-btn {
+      display: none;
+      position: fixed;
+      top:0;
+      right:0;
+      z-index: 1100;
+      font-size: 22px;
+      border: none;
+      border-radius: 5px;
+      padding: 6px 10px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .main-content {
+      margin-left: 240px;
+      padding: 60px 30px;
+      min-height: 100vh;
+      background-image: url('toolsbg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      backdrop-filter: blur(6px);
+      transition: margin-left 0.3s ease;
+    }
+
+    .main-content.full {
+      margin-left: 0;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 36px;
+      color: #111;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .card {
+      width: 300px;
+      height: 280px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(5px);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 3px;
+      background: linear-gradient(45deg, #000, #FFD700, #FF8C00);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .card i {
+      font-size: 70px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .card span {
+      font-size: 22px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    @media (max-width: 992px) {
+      .menu-btn {
+        display: block;
+        top:0;
+        right:0;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.show {
+        transform: translateX(0);
+      }
+
+      .close-btn {
+        display: block;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .card {
+        width: 90%;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .card {
+        width: 95%;
+        padding: 30px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Admin</h2>
+      <button class="close-btn" onclick="toggleSidebar()">✖</button>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#" class="nav-item">Profile</a></li>
+        <li><a href="#" class="nav-item">Drivers</a></li>
+        <li><a href="#" class="nav-item active">Services</a></li>
+        <li><a href="#" class="nav-item">Leaves</a></li>
+        <li><a href="#" class="nav-item">Buses</a></li>
+        <li><a href="#" class="nav-item">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content" id="mainContent">
+    <h1>Bus Service Dashboard</h1>
+    <div class="cards-container">
+      <a class="card" href="garage.html">
+        <i class="fas fa-tools"></i>
+        <span>Garage Details</span>
+      </a>
+      <a class="card" href="fuel.html">
+        <i class="fas fa-gas-pump"></i>
+        <span>Fuel Details</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
