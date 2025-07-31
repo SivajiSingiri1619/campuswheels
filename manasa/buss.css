@@ -85,6 +85,8 @@ body {
 }
 .sidebar-nav a:hover {
   background-color: #1565c0;
+  border-left: 4px solid #ffffff;
+  color: white;
 }
 
 .main-content {
