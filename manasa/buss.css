@@ -29,9 +29,9 @@ h2 {
   background: #1a1a1a;
   color: #fff;
   position: fixed;
-  top: 10%;
+  top: 70px;
   left: 0;
-  height: 90%;
+  height: 100%;
   transition: transform 0.3s ease;
   z-index: 1000;
 }
@@ -184,9 +184,15 @@ h2 {
   color: #000;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .menu-btn {
     display: block;
+    color: #000;
+    background:none ;
+    z-index: 1300;
+  }
+  .header-right h1{
+    display: none;
   }
 
   .sidebar {
@@ -206,6 +212,7 @@ h2 {
 
   .close-btn {
     display: block;
+    z-index: 1300;
   }
 
   .main-content {
