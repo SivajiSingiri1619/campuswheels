@@ -7,17 +7,28 @@
   <link rel="stylesheet" href="./admin4.css" />
 </head>
 <body>
+  <!-- ☰ Top-right Menu Button -->
+  <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
 
-  <div class="sidebar">
-    <h2>Admin Panel</h2>
-    <a href="#">Dashboard</a>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Admin Panel</h2>
+      <span class="close-btn" onclick="toggleSidebar()">×</span>
+    </div>
     <a href="#">Profile</a>
+    <a href="#">Drivers</a>
     <a href="#">Leaves</a>
-    <a href="#">Buses</a>
-    <a href="#">Settings</a>
+    <a href="#">Garrage</a>
+    <a href="#">Busses</a>
+    <a href="#">Others</a>
     <a href="#" onclick="if(confirm('Do you want to logout?')) { window.location.replace('../karthik/index.html'); }">Logout</a>
   </div>
 
+  <!-- Hamburger icon for mobile -->
+  <div class="hamburger" onclick="toggleSidebar()">☰</div>
+
+  <!-- Main Content -->
   <div class="main-content">
     <header>
       <h1 id="AdminWelcome"></h1>
@@ -56,7 +67,52 @@
         </div>
       </div>
     </section>
+  </div>
 
-  <script src="../deepika/script.js"></script>
+  <!-- JavaScript -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('show-sidebar');
+    }
+
+    // Load dynamic content
+    window.onload = () => {
+      document.getElementById('AdminWelcome').textContent = "Welcome Back, Admin!";
+      const today = new Date().toLocaleDateString('en-GB', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      });
+      document.getElementById('date').textContent = today;
+
+      document.getElementById('adminId').textContent = "ADM001";
+      document.getElementById('Adminemail').textContent = "admin@example.com";
+      document.getElementById('Adminrole').textContent = "Super Admin";
+      document.getElementById('Adminphone').textContent = "+91-9876543210";
+      document.getElementById('Adminjoining').textContent = "2023-05-01";
+      document.getElementById('Adminlocation').textContent = "Hyderabad";
+    };
+
+    let isEditing = false;
+    const fields = ['adminId', 'Adminemail', 'Adminrole', 'Adminphone', 'Adminjoining', 'Adminlocation'];
+
+    function toggleEdit() {
+      isEditing = !isEditing;
+      fields.forEach(id => {
+        const container = document.getElementById(id);
+        if (isEditing) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.value = container.textContent;
+          input.className = 'editable-input';
+          container.innerHTML = '';
+          container.appendChild(input);
+        } else {
+          const input = container.querySelector('input');
+          container.textContent = input.value;
+        }
+      });
+      document.getElementById('editBtn').textContent = isEditing ? 'Save Profile' : 'Edit Profile';
+    }
+  </script>
 </body>
 </html>
