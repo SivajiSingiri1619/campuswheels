@@ -232,8 +232,8 @@ h1 {
     .menu-btn {
       display: none;
       position: fixed;
-      top:10px;
-      right: 40px;
+      top:0;
+      right:0;
       z-index: 1100;
       font-size: 22px;
       border: none;
@@ -242,6 +242,7 @@ h1 {
       cursor: pointer;
       color: #000;
     }
+
 
 /* .footer {
   background-color: rgba(49, 133, 230, 0.6);
