@@ -30,7 +30,7 @@
   --box-bg: rgba(255, 255, 255, 0.05);
 }
 
-    /* 🔸 Header */
+   
     .header {
       width: 100%;
       height: 70px;
@@ -69,13 +69,12 @@
   object-fit: contain;
 }
 
-    /* 🔸 Sidebar */
     .sidebar {
       width: 240px;
       background: #1a1a1a;
       color: #fff;
       position: fixed;
-      top: 70px; /* below header */
+      top: 70px; 
       left: 0;
       height: calc(100vh - 70px);
       transition: transform 0.3s ease;
@@ -134,7 +133,6 @@
       border-left: 4px solid #FFD700;
     }
 
-    /* 🔸 Menu Button */
     .menu-btn {
       display: none;
       position: fixed;
@@ -150,14 +148,14 @@
       background:none;
     }
 
-    /* 🔸 Main Content */
+   
     .main-content {
       margin-left: 240px;
       padding: 100px 30px 30px 30px;
       min-height: 100vh;
       transition: margin-left 0.3s ease;
       color: #000;
-       background-image: url('bus.png'); /* Replace with your image */
+       background-image: url('bus.png'); 
        background-size: cover;
       background-color: rgba(255, 255, 255, 0.7);
       background-position: center;
@@ -282,16 +280,16 @@
 </head>
 <body>
 
-  <!-- 🔸 Header -->
+  
   <div class="header">
      <div class="logo"><img src="./RN wheels logo.png" alt="Campus Wheels Logo" /></div>
     <h1>CAMPUS WHEELS</h1>
   </div>
 
-  <!-- 🔸 Menu Button for Small Screens -->
+  
   <button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
-  <!-- 🔸 Sidebar Navigation -->
+ 
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2>Admin</h2>
@@ -309,7 +307,7 @@
     </nav>
   </div>
 
-  <!-- 🔸 Main Content -->
+ 
   <div class="main-content" id="mainContent">
     <h1>Bus Service Dashboard</h1>
     <div class="cards-container">
@@ -324,7 +322,7 @@
     </div>
   </div>
 
-  <!-- 🔸 JavaScript -->
+
   <script>
     const sidebar = document.getElementById('sidebar');
 
