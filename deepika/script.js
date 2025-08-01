@@ -632,7 +632,31 @@ function showmenu(){
 }
 
 const resultBlock = document.getElementById("resultBlock");
+const dashboardDetails = document.getElementById('dashboardDetails');
+if(dashboardDetails) {
+    const menuIcon = document.getElementById('menuIcon');
+const menuBar = document.getElementById('menuBar');
+const closeBar = document.getElementById('closeBar');
 
+
+function showmenu() {
+  menuBar.classList.add('active');
+  dashboardDetails.classList.remove('hidden');
+}
+
+function closemenu() {
+  menuBar.classList.remove('active');
+  // Keep dashboard-details visible, don't add 'hidden'
+}
+
+menuIcon.addEventListener('click', () => {
+  showmenu();
+});
+
+closeBar.addEventListener('click', () => {
+  closemenu();
+});
+}
 function searchdetails(){
     // BUS Details
     let opt = document.getElementsByClassName("choose-opt")[0].value;
