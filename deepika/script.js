@@ -649,13 +649,14 @@ function searchdetails(){
 
     let bus = buses.find(bus => bus.busId === num);
     if(bus){
-        res = `<p><b>Bus ID</b> :- ${bus.busId}</p>
+        res = `<div class="result-content">
+        <p><b>Bus ID</b> :- ${bus.busId}</p>
                 <p><b>Bus NO</b>:- ${bus.busNo}</p> 
                 <p><b>Bus Route</b> :- ${bus.route}</p> 
                 <p><b>Bus Driver</b> :- ${bus.driver}</p> 
                 <p><b>Bus meter Reading</b> :- ${bus.meterReading}</p> 
                 <p><b>Bus Last fuel</b> :- ${bus.lastFuelDate}</p> 
-                <p><b>Bus Last garage<b> :- ${bus.lastGarageDate}</p> `
+                <p><b>Bus Last garage<b> :- ${bus.lastGarageDate}</p> </div>`
     }
     else{
     res = '<p>Bus Not Found!</p>';
