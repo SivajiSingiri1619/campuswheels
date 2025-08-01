@@ -292,7 +292,7 @@ nav {
 }
 
 .result:hover {
-  border: 2px solid var(--secondary-color);
+  border: 2px solid var(--black-color);
   transform: perspective(1000px) rotateY(0deg) scale(1.05);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;

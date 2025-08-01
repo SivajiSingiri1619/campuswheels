@@ -114,66 +114,109 @@ const serviceDate = document.getElementById('serviceDate');
 const fuelLiters = document.getElementById('fuelLiters');
 const serviceDateGarage = document.getElementById('serviceDateGarage');
 
-if(fuelBtn){
+// if(fuelBtn){
+//     fuelBtn.addEventListener('click', () => {
+//         const isFuelHidden = fuelFields.classList.contains('hidden');
+//         if(isFuelHidden){
+//             serviceTypeInput.value = 'fuel';
+//             fuelBtn.classList.add('active');
+//             garageBtn.classList.remove('active');
+//             fuelBtn.classList.add('fuel');
+//             garageBtn.classList.remove('garage');
+//             fuelFields.classList.remove('hidden');
+
+//             garageBtn.style.backgroundColor = "transparent";
+//             garageBtn.style.color = "black";
+//             fuelBtn.style.backgroundColor = "#f5487f";
+//             fuelBtn.style.color = "white";
+
+//             garageFields.classList.add('hidden');
+//         }
+//         else {
+//             serviceTypeInput.value = '';
+//             fuelBtn.classList.remove('active');
+//             fuelFields.classList.add('hidden');
+//             garageBtn.classList.add('garage');
+
+//             garageBtn.style.backgroundColor = "orange";
+//             garageBtn.style.color = "white";
+//             fuelBtn.style.backgroundColor = "#f5487f";
+//             fuelBtn.style.color = "white";
+//         }
+//     });
+// }
+
+// if(garageBtn){
+//     garageBtn.addEventListener('click', () => {
+//         const isGarageHidden = garageFields.classList.contains('hidden');
+//         if(isGarageHidden) {
+//             serviceTypeInput.value = 'garage';
+//             garageBtn.classList.add('active');
+//             fuelBtn.classList.remove('active');
+//             garageBtn.classList.add('garage');
+//             fuelBtn.classList.remove('fuel');
+//             garageFields.classList.remove('hidden');
+//             fuelFields.classList.add('hidden');
+
+//             fuelBtn.style.backgroundColor = "transparent";
+//             fuelBtn.style.color = "black";
+//             garageBtn.style.backgroundColor = "orange";
+//             garageBtn.style.color = "white";
+//         }
+//         else {
+//             serviceTypeInput.value = '';
+//             garageBtn.classList.remove('active');
+//             garageFields.classList.add('hidden');
+//             fuelBtn.classList.add('fuel');
+
+//             garageBtn.style.backgroundColor = "orange";
+//             garageBtn.style.color = "white";
+//             fuelBtn.style.backgroundColor = "#f5487f";
+//             fuelBtn.style.color = "white";
+//         }
+//     });
+// }
+
+
+if (fuelBtn) {
     fuelBtn.addEventListener('click', () => {
-        const isFuelHidden = fuelFields.classList.contains('hidden');
-        if(isFuelHidden){
-            serviceTypeInput.value = 'fuel';
-            fuelBtn.classList.add('active');
-            garageBtn.classList.remove('active');
-            fuelBtn.classList.add('fuel');
-            garageBtn.classList.remove('garage');
-            fuelFields.classList.remove('hidden');
+        // Set service type
+        serviceTypeInput.value = 'fuel';
 
-            garageBtn.style.backgroundColor = "transparent";
-            garageBtn.style.color = "black";
-            fuelBtn.style.backgroundColor = "#f5487f";
-            fuelBtn.style.color = "white";
+        // Update classes
+        fuelBtn.classList.add('active', 'fuel');
+        garageBtn.classList.remove('active', 'garage');
 
-            garageFields.classList.add('hidden');
-        }
-        else {
-            serviceTypeInput.value = '';
-            fuelBtn.classList.remove('active');
-            fuelFields.classList.add('hidden');
-            garageBtn.classList.add('garage');
+        // Show fuel fields, hide garage
+        fuelFields.classList.remove('hidden');
+        garageFields.classList.add('hidden');
 
-            garageBtn.style.backgroundColor = "orange";
-            garageBtn.style.color = "white";
-            fuelBtn.style.backgroundColor = "#f5487f";
-            fuelBtn.style.color = "white";
-        }
+        // Styling
+        fuelBtn.style.backgroundColor = "#f5487f";
+        fuelBtn.style.color = "white";
+        garageBtn.style.backgroundColor = "transparent";
+        garageBtn.style.color = "black";
     });
 }
 
-if(garageBtn){
+if (garageBtn) {
     garageBtn.addEventListener('click', () => {
-        const isGarageHidden = garageFields.classList.contains('hidden');
-        if(isGarageHidden) {
-            serviceTypeInput.value = 'garage';
-            garageBtn.classList.add('active');
-            fuelBtn.classList.remove('active');
-            garageBtn.classList.add('garage');
-            fuelBtn.classList.remove('fuel');
-            garageFields.classList.remove('hidden');
-            fuelFields.classList.add('hidden');
+        // Set service type
+        serviceTypeInput.value = 'garage';
 
-            fuelBtn.style.backgroundColor = "transparent";
-            fuelBtn.style.color = "black";
-            garageBtn.style.backgroundColor = "orange";
-            garageBtn.style.color = "white";
-        }
-        else {
-            serviceTypeInput.value = '';
-            garageBtn.classList.remove('active');
-            garageFields.classList.add('hidden');
-            fuelBtn.classList.add('fuel');
+        // Update classes
+        garageBtn.classList.add('active', 'garage');
+        fuelBtn.classList.remove('active', 'fuel');
 
-            garageBtn.style.backgroundColor = "orange";
-            garageBtn.style.color = "white";
-            fuelBtn.style.backgroundColor = "#f5487f";
-            fuelBtn.style.color = "white";
-        }
+        // Show garage fields, hide fuel
+        garageFields.classList.remove('hidden');
+        fuelFields.classList.add('hidden');
+
+        // Styling
+        garageBtn.style.backgroundColor = "orange";
+        garageBtn.style.color = "white";
+        fuelBtn.style.backgroundColor = "transparent";
+        fuelBtn.style.color = "black";
     });
 }
 
@@ -486,59 +529,6 @@ function Attendance(driver) {
     }
 }
 
-
-let isEditing = false;
-const button = document.getElementById("editBtn");
-if(button){
-    function toggleEdit() {
-    const fields = document.querySelectorAll(".profile-right .info");
-    
-
-    if (!isEditing) {
-        fields.forEach(field => {
-        const valueDiv = field.querySelector(".static-value");
-        const valueText = valueDiv.textContent;
-
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = valueText;
-        input.className = "editable-input";
-
-        field.replaceChild(input, valueDiv);
-        });
-
-        button.textContent = "Save Changes";
-        button.style.backgroundColor = "#4caf50";
-        button.style.transform = "scale(1.05)";
-    } else {
-        fields.forEach(field => {
-        const input = field.querySelector("input");
-        const updatedText = input.value;
-
-        const div = document.createElement("div");
-        div.className = "static-value";
-        div.textContent = updatedText;
-
-        field.replaceChild(div, input);
-        });
-
-        button.textContent = "Edit Profile";
-        button.style.backgroundColor = "#00bcd4";
-        button.style.transform = "scale(1)";
-        alert("Profile updated successfully!");
-    }
-
-    isEditing = !isEditing;
-    }
-
-    // ✅ Display Current Date
-    document.addEventListener("DOMContentLoaded", () => {
-    const dateSpan = document.getElementById("date");
-    const today = new Date();
-    dateSpan.textContent = today.toDateString();
-    });
-}
-
 const loginPage = document.getElementById("LoginPage");
 if(loginPage) {
     const video = document.getElementById("intro-video");
@@ -632,7 +622,31 @@ function showmenu(){
 }
 
 const resultBlock = document.getElementById("resultBlock");
+const dashboardDetails = document.getElementById('dashboardDetails');
+if(dashboardDetails) {
+    const menuIcon = document.getElementById('menuIcon');
+const menuBar = document.getElementById('menuBar');
+const closeBar = document.getElementById('closeBar');
 
+
+function showmenu() {
+  menuBar.classList.add('active');
+  dashboardDetails.classList.remove('hidden');
+}
+
+function closemenu() {
+  menuBar.classList.remove('active');
+  // Keep dashboard-details visible, don't add 'hidden'
+}
+
+menuIcon.addEventListener('click', () => {
+  showmenu();
+});
+
+closeBar.addEventListener('click', () => {
+  closemenu();
+});
+}
 function searchdetails(){
     // BUS Details
     let opt = document.getElementsByClassName("choose-opt")[0].value;

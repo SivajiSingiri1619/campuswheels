@@ -108,6 +108,7 @@ nav {
   color: var(--text-color);
   transition: transform 0.3s ease-out;
   z-index: 999;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .sidebar.show {
