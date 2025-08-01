@@ -8,157 +8,170 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <style>
-    .flip-card {
-      width: 140px;
-      height: 140px;
-      perspective: 1000px;
-      margin: auto;
-      margin-bottom: 15px;
-      cursor: pointer;
+    body {
+      font-family: 'Poppins', sans-serif;
     }
 
-    .flip-card-inner {
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-      position: relative;
+    .profile-section {
+      display: flex;
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px #FF8C00;
+      gap: 40px;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .flip-card.flipped .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .flip-card-front,
-    .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
+    .admin-image {
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid orange;
-      box-shadow: inset 0 0 5px white;
-    }
-
-    .flip-card-front img,
-    .flip-card-back img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
-      border-radius: 50%;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
     }
 
-    .flip-card-back {
-      transform: rotateY(180deg);
+    .admin-welcome {
+      text-align: center;
+      margin: 30px auto 20px;
+      animation: fadeUp 1.2s ease-in-out;
+    }
+
+    .welcome-text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FF8C00;
+      margin-bottom: 10px;
+    }
+
+    .date-display {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+
+    .editable-input {
+      padding: 6px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    #editBtn {
+      margin-top: 20px;
+      padding: 8px 16px;
+      border: none;
+      background-color: orange;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    #editBtn:hover {
+      background-color: darkorange;
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <div class="header">
     <nav>
-    <div class="logo"><img src="../sivaji/RN wheels logo.png" alt="Campus Wheels Logo"></div>
-  
-      <h1 class="nav-items" >CAMPUS WHEELS</h1>
-    <div class="hamburger" onclick="toggleSidebar()">☰</div>
-   </nav>
+      <div class="logo"><img src="../sivaji/RN wheels logo.png" alt="Campus Wheels Logo"></div>
+      <h1 class="nav-items">CAMPUS WHEELS</h1>
+      <div class="hamburger" onclick="toggleSidebar()">☰</div>
+    </nav>
   </div>
 
-  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2>Admin Panel</h2>
       <span class="close-btn" onclick="toggleSidebar()">×</span>
     </div>
-    <a href="../nitya/admin4.html" onclick="window.location.replace('../nitya/admin4.html')" class="nav-item active">Profile</a>
-    <a href="../sivaji/myadmin.html" onclick="window.location.replace('../sivaji/myadmin.html')" class="nav-item">Dashboard</a>
-    <a href="../meghana/index.html" class="nav-item" onclick="window.location.replace('../meghana/index.html')">Services</a>
-    <a href="../manasa/buss.html" class="nav-item" onclick="window.location.replace('../manasa/buss.html')">Buses</a>
-    <a href="../manasa/leave.html" class="nav-item" onclick="window.location.replace('../manasa/leave.html')">Leaves</a>
+    <a href="../nitya/admin4.html" class="nav-item active">Profile</a>
+    <a href="../sivaji/myadmin.html" class="nav-item">Dashboard</a>
+    <a href="../meghana/index.html" class="nav-item">Services</a>
+    <a href="../manasa/buss.html" class="nav-item">Buses</a>
+    <a href="../manasa/leave.html" class="nav-item">Leaves</a>
     <a href="#" class="nav-item" onclick="if(confirm('Do you want to logout?')) { window.location.replace('../karthik/index.html'); }">Logout</a>
   </div>
 
-  <!-- Main Content -->
   <div class="main-content">
+    <div class="admin-welcome">
+      <h2 class="welcome-text">Welcome Admin</h2>
+      <div class="date-display" id="currentDate"></div>
+    </div>
+
     <section class="profile-section">
       <div class="profile-left">
-        <!-- Flip Card Starts -->
-        <!-- <div class="flip-card" onclick="flipImage(this)">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="https://i.pravatar.cc/160?img=68" alt="Admin Front" />
-            </div>
-            <div class="flip-card-back">
-              <img src="./admin avatar.jpg" alt="Admin Back Avatar" />
-            </div>
-          </div>
-        </div> -->
-        <!-- Flip Card Ends -->
+        <img class="admin-image" src="https://i.pravatar.cc/160?img=68" alt="Admin Image" />
         <button id="editBtn" onclick="toggleEdit()">Edit Profile</button>
       </div>
+
       <div class="profile-right">
-        <div class="info">
-          <label>Admin ID</label>
-          <div class="static-value" id="adminId"></div>
-        </div>
-        <div class="info">
-          <label>Email</label>
-          <div class="static-value" id="Adminemail"></div>
-        </div>
-        <div class="info">
-          <label>Role</label>
-          <div class="static-value" id="Adminrole"></div>
-        </div>
-        <div class="info">
-          <label>Phone</label>
-          <div class="static-value" id="Adminphone"></div>
-        </div>
-        <div class="info">
-          <label>Date of Joining</label>
-          <div class="static-value" id="Adminjoining"></div>
-        </div>
-        <div class="info">
-          <label>Location</label>
-          <div class="static-value" id="Adminlocation"></div>
-        </div>
+        <div class="info"><label>Admin Name</label><div class="static-value" id="adminname"></div></div>
+        <div class="info"><label>Admin ID</label><div class="static-value" id="adminId"></div></div>
+        <div class="info"><label>Email</label><div class="static-value" id="Adminemail"></div></div>
+        <div class="info"><label>Role</label><div class="static-value" id="Adminrole"></div></div>
+        <div class="info"><label>Gender</label><div class="static-value" id="gender"></div></div>
+        <div class="info"><label>Blood Group</label><div class="static-value" id="bloodgroup"></div></div>
+        <div class="info"><label>Phone</label><div class="static-value" id="Adminphone"></div></div>
+        <div class="info"><label>Admin Emergency Contact</label><div class="static-value" id="emergencycontact"></div></div>
+        <div class="info"><label>Date of Joining</label><div class="static-value" id="Adminjoining"></div></div>
+        <div class="info"><label>Admin Experience</label><div class="static-value" id="experience"></div></div>
+        <div class="info"><label>Location</label><div class="static-value" id="Adminlocation"></div></div>
       </div>
     </section>
+  </div>
 
-
-  <!-- JavaScript -->
-  <script ></script>
+  <script>
     function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("show");
+      document.getElementById("sidebar").classList.toggle("show");
     }
 
-    function fun() {
-      alert("Filtering data for the selected date...");
-    }
+    const fields = [
+      'adminname', 'adminId', 'Adminemail', 'Adminrole',
+      'gender', 'bloodgroup', 'Adminphone', 'emergencycontact',
+      'Adminjoining', 'experience', 'Adminlocation'
+    ];
 
     window.onload = () => {
-      document.getElementById('AdminWelcome').textContent = "Welcome Back, Admin!";
-      const today = new Date().toLocaleDateString('en-GB', {
-        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '';
       });
-      document.getElementById('date').textContent = today;
 
-      document.getElementById('adminId').textContent = "ADM001";
-      document.getElementById('Adminemail').textContent = "admin@example.com";
-      document.getElementById('Adminrole').textContent = "Super Admin";
-      document.getElementById('Adminphone').textContent = "+91-9876543210";
-      document.getElementById('Adminjoining').textContent = "2023-05-01";
-      document.getElementById('Adminlocation').textContent = "Hyderabad";
+      const currentDate = new Date().toLocaleDateString('en-IN', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+      document.getElementById("currentDate").textContent = currentDate;
     };
 
     let isEditing = false;
-    const fields = ['adminId', 'Adminemail', 'Adminrole', 'Adminphone', 'Adminjoining', 'Adminlocation'];
-
     function toggleEdit() {
       isEditing = !isEditing;
       fields.forEach(id => {
         const container = document.getElementById(id);
+        if (!container) return;
         if (isEditing) {
           const input = document.createElement('input');
           input.type = 'text';
@@ -168,17 +181,11 @@
           container.appendChild(input);
         } else {
           const input = container.querySelector('input');
-          container.textContent = input.value;
+          if (input) container.textContent = input.value;
         }
       });
       document.getElementById('editBtn').textContent = isEditing ? 'Save Profile' : 'Edit Profile';
     }
-
-    function flipImage(card) {
-      card.classList.toggle('flipped');
-    }
-
-    document.getElementById('searchBtn').addEventListener('click', searchdetails);
   </script>
 </body>
 </html>
