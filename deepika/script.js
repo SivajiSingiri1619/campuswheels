@@ -22,11 +22,13 @@ const drivers = [
 ];
 
 const admins = [
-  {adminId: "ADM001", adminName: "Kiran", email: "john.doe@example.com", role: "SuperAdmin", phone: "+91 5551234567", dateOfJoining: "2022-03-15", location: "New York, USA"},
-  {adminId: "ADM002", adminName: "Ashok", email: "jane.smith@example.com", role: "Moderator", phone: "+91 2079460958", dateOfJoining: "2021-07-20", location: "London, UK"},
-  {adminId: "ADM003", adminName: "Pavan", email: "ali.khan@example.com", role: "Admin", phone: "+91 3001234567", dateOfJoining: "2023-01-10", location: "Lahore, Pakistan"},
-  {adminId: "ADM004", adminName: "Girish", email: "maria.garcia@example.com", role: "SuperAdmin", phone: "+91 600123456", dateOfJoining: "2020-11-05", location: "Madrid, Spain"},
-  {adminId: "ADM005", adminName: "Satish", email: "li.wei@example.com", role: "Admin", phone: "+91 1012345678", dateOfJoining: "2022-08-25", location: "Beijing, China"}
+  {adminId:"ADM001", adminName:"Kiran", email:"kiran@example.com", role:"SuperAdmin", gender:"Male", bloodgroup:"O+", phone:"+91 5551234567", emergencycontact:"+91 9876543210", dateOfJoining:"2022-03-15", experience:"5 years", location:"New York, USA"},
+  {adminId:"ADM002", adminName:"Ashok", email:"ashok@example.com", role:"Moderator", gender:"Male", bloodgroup:"A-", phone:"+91 2079460958", emergencycontact:"+91 9123456789", dateOfJoining:"2021-07-20", experience:"3 years", location:"London, UK"},
+  {adminId:"ADM003", adminName:"Pavan", email:"pavan@example.com", role:"Admin", gender:"Male", bloodgroup:"B+", phone:"+91 3001234567", emergencycontact:"+91 9988776655", dateOfJoining:"2023-01-10", experience:"2 years", location:"Lahore, Pakistan"},
+  {adminId:"ADM004", adminName:"Girish", email:"girish@example.com", role:"SuperAdmin", gender:"Male", bloodgroup:"AB+", phone:"+91 600123456", emergencycontact:"+91 9112233445", dateOfJoining:"2020-11-05", experience:"6 years", location:"Madrid, Spain"},
+  {adminId:"ADM005", adminName:"Satish", email:"satish@example.com", role:"Admin", gender:"Male", bloodgroup:"O-", phone:"+91 1012345678", emergencycontact:"+91 9001122334", dateOfJoining:"2022-08-25", experience:"4 years", location:"Beijing, China"},
+  {adminId:"ADM006", adminName:"Sneha", email:"sneha@example.com", role:"Moderator", gender:"Female", bloodgroup:"A+", phone:"+91 8887766554", emergencycontact:"+91 7998877665", dateOfJoining:"2019-09-12", experience:"7 years", location:"Mumbai, India"},
+  {adminId:"ADM007", adminName:"Lina", email:"lina@example.com", role:"Admin", gender:"Female", bloodgroup:"B-", phone:"+91 7776655443", emergencycontact:"+91 6887766554", dateOfJoining:"2021-04-08", experience:"3 years", location:"Sydney, Australia"}
 ];
 
 let buses = [
@@ -114,109 +116,65 @@ const serviceDate = document.getElementById('serviceDate');
 const fuelLiters = document.getElementById('fuelLiters');
 const serviceDateGarage = document.getElementById('serviceDateGarage');
 
-// if(fuelBtn){
-//     fuelBtn.addEventListener('click', () => {
-//         const isFuelHidden = fuelFields.classList.contains('hidden');
-//         if(isFuelHidden){
-//             serviceTypeInput.value = 'fuel';
-//             fuelBtn.classList.add('active');
-//             garageBtn.classList.remove('active');
-//             fuelBtn.classList.add('fuel');
-//             garageBtn.classList.remove('garage');
-//             fuelFields.classList.remove('hidden');
-
-//             garageBtn.style.backgroundColor = "transparent";
-//             garageBtn.style.color = "black";
-//             fuelBtn.style.backgroundColor = "#f5487f";
-//             fuelBtn.style.color = "white";
-
-//             garageFields.classList.add('hidden');
-//         }
-//         else {
-//             serviceTypeInput.value = '';
-//             fuelBtn.classList.remove('active');
-//             fuelFields.classList.add('hidden');
-//             garageBtn.classList.add('garage');
-
-//             garageBtn.style.backgroundColor = "orange";
-//             garageBtn.style.color = "white";
-//             fuelBtn.style.backgroundColor = "#f5487f";
-//             fuelBtn.style.color = "white";
-//         }
-//     });
-// }
-
-// if(garageBtn){
-//     garageBtn.addEventListener('click', () => {
-//         const isGarageHidden = garageFields.classList.contains('hidden');
-//         if(isGarageHidden) {
-//             serviceTypeInput.value = 'garage';
-//             garageBtn.classList.add('active');
-//             fuelBtn.classList.remove('active');
-//             garageBtn.classList.add('garage');
-//             fuelBtn.classList.remove('fuel');
-//             garageFields.classList.remove('hidden');
-//             fuelFields.classList.add('hidden');
-
-//             fuelBtn.style.backgroundColor = "transparent";
-//             fuelBtn.style.color = "black";
-//             garageBtn.style.backgroundColor = "orange";
-//             garageBtn.style.color = "white";
-//         }
-//         else {
-//             serviceTypeInput.value = '';
-//             garageBtn.classList.remove('active');
-//             garageFields.classList.add('hidden');
-//             fuelBtn.classList.add('fuel');
-
-//             garageBtn.style.backgroundColor = "orange";
-//             garageBtn.style.color = "white";
-//             fuelBtn.style.backgroundColor = "#f5487f";
-//             fuelBtn.style.color = "white";
-//         }
-//     });
-// }
-
-
 if (fuelBtn) {
     fuelBtn.addEventListener('click', () => {
-        // Set service type
-        serviceTypeInput.value = 'fuel';
+        const isFuelHidden = fuelFields.classList.contains('hidden');
+        if(isFuelHidden){
+            serviceTypeInput.value = 'fuel';
 
-        // Update classes
-        fuelBtn.classList.add('active', 'fuel');
-        garageBtn.classList.remove('active', 'garage');
+            fuelBtn.classList.add('active', 'fuel');
+            garageBtn.classList.remove('active', 'garage');
 
-        // Show fuel fields, hide garage
-        fuelFields.classList.remove('hidden');
-        garageFields.classList.add('hidden');
+            fuelFields.classList.remove('hidden');
+            garageFields.classList.add('hidden');
 
-        // Styling
-        fuelBtn.style.backgroundColor = "#f5487f";
-        fuelBtn.style.color = "white";
-        garageBtn.style.backgroundColor = "transparent";
-        garageBtn.style.color = "black";
+            fuelBtn.style.backgroundColor = "#f5487f";
+            fuelBtn.style.color = "white";
+            garageBtn.style.backgroundColor = "transparent";
+            garageBtn.style.color = "black";
+        }
+        else {
+            serviceTypeInput.value = '';
+            fuelBtn.classList.remove('active');
+            fuelFields.classList.add('hidden');
+            garageBtn.classList.add('garage', 'active');
+
+            garageBtn.style.backgroundColor = "orange";
+            garageBtn.style.color = "white";
+            fuelBtn.style.backgroundColor = "#f5487f";
+            fuelBtn.style.color = "white";
+        }
     });
 }
 
 if (garageBtn) {
     garageBtn.addEventListener('click', () => {
-        // Set service type
-        serviceTypeInput.value = 'garage';
+        const isGarageHidden = garageFields.classList.contains('hidden');
+        if(isGarageHidden){
+            serviceTypeInput.value = 'garage';
 
-        // Update classes
-        garageBtn.classList.add('active', 'garage');
-        fuelBtn.classList.remove('active', 'fuel');
+            garageBtn.classList.add('active', 'garage');
+            fuelBtn.classList.remove('active', 'fuel');
 
-        // Show garage fields, hide fuel
-        garageFields.classList.remove('hidden');
-        fuelFields.classList.add('hidden');
+            garageFields.classList.remove('hidden');
+            fuelFields.classList.add('hidden');
 
-        // Styling
-        garageBtn.style.backgroundColor = "orange";
-        garageBtn.style.color = "white";
-        fuelBtn.style.backgroundColor = "transparent";
-        fuelBtn.style.color = "black";
+            garageBtn.style.backgroundColor = "orange";
+            garageBtn.style.color = "white";
+            fuelBtn.style.backgroundColor = "transparent";
+            fuelBtn.style.color = "black";
+        }
+        else {
+            serviceTypeInput.value = '';
+            garageBtn.classList.remove('active');
+            garageFields.classList.add('hidden');
+            fuelBtn.classList.add('fuel', 'active');
+
+            garageBtn.style.backgroundColor = "orange";
+            garageBtn.style.color = "white";
+            fuelBtn.style.backgroundColor = "#f5487f";
+            fuelBtn.style.color = "white";
+        }
     });
 }
 
@@ -307,11 +265,7 @@ function generateLeaveDateButtons() {
         button.className = 'date';
         button.textContent = formattedDate;
         button.dataset.date = dateStr;
-        // button.addEventListener('click', () => {
-        //     leaveDateInput.value = dateStr;
-        //     document.querySelectorAll('.date').forEach(btn => btn.classList.remove('date-selected'));
-        //     button.classList.add('date-selected');
-        // });
+        
         button.addEventListener('click', () => {
             const alreadySelected = button.classList.contains('date-selected');
 
@@ -417,7 +371,7 @@ function getLoggedInDriver() {
 
 function getLoggedInAdmin() {
     const id = localStorage.getItem("loggedInAdminId");
-    if(!id) return null;
+    if (!id) return null;
     return admins.find(admin => admin.adminId === id);
 }
 
@@ -433,12 +387,10 @@ if (document.getElementById("DriverHello")) {
     setInterval(checkTimeWindow, 60000);
     calculateAttendance(driver);
 
-    // RunAttendance(driver);
-    // setInterval(() => RunAttendance(driver), 60000);
   }
 }
 
-if(document.getElementById("AdminWelcome")) {
+if(document.getElementById("Adminsidebar")) {
     const admin = getLoggedInAdmin();
     if(!admin) {
         window.location.replace("../karthik/index.html");
@@ -447,19 +399,6 @@ if(document.getElementById("AdminWelcome")) {
         AdminDetails(admin);
     }
 }
-
-// function RunAttendance(driver) {
-//     const now = new Date();
-//     const Hour = now.getHours();
-//     const todayDate = now.toISOString().split('T')[0];
-
-//     const lastRun = localStorage.getItem('attendanceLastRun');
-
-//     if(Hour === 23 && lastRun !== todayDate) {
-//         calculateAttendance(driver);
-//         localStorage.setItem('attendanceLastRun',todayDate);
-//     }
-// }
 
 function calculateAttendance(driver) {
     const today = new Date();
@@ -478,10 +417,7 @@ function calculateAttendance(driver) {
 
     const totalDays = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
     let daysPresent = 22;
-    // if(currentDay === 26){
-    //     daysPresent = 0;
-    // }
-    // if(driver.status === "Present") daysPresent++;
+
     const percentage = ((daysPresent / totalDays) * 100).toFixed(2);
 
     const percentageElement = document.getElementById('attendancePercentage');
@@ -501,13 +437,63 @@ function DriverDetails(driver) {
 }
 
 function AdminDetails(admin) {
-    document.getElementById("AdminWelcome").innerText = `Welcome! ${admin.adminName}`;
-    document.getElementById("adminId").innerText = `${admin.adminId}`;
-    document.getElementById("Adminemail").innerText =`${admin.email}`;
-    document.getElementById("Adminrole").innerText = `${admin.role}`;
-    document.getElementById("Adminphone").innerText = `${admin.phone}`;
-    document.getElementById("Adminjoining").innerText = `${admin.dateOfJoining}`;
-    document.getElementById("Adminlocation").innerText = `${admin.location}`;
+    document.getElementById("adminname").innerHTML = `<p>${admin.adminName}</p>`;
+    document.getElementById("adminId").innerHTML = `<p>${admin.adminId}</p>`;
+    document.getElementById("Adminemail").innerHTML = `<p>${admin.email}</p>`;
+    document.getElementById("Adminrole").innerHTML = `<p>${admin.role}</p>`;
+    document.getElementById("gender").innerHTML = `<p>${admin.gender}</p>`;
+    document.getElementById("bloodgroup").innerHTML = `<p>${admin.bloodgroup}</p>`;
+    document.getElementById("Adminphone").innerHTML = `<p>${admin.phone}</p>`;
+    document.getElementById("emergencycontact").innerHTML = `<p>${admin.emergencycontact}</p>`;
+    document.getElementById("Adminjoining").innerHTML = `<p>${admin.dateOfJoining}</p>`;
+    document.getElementById("experience").innerHTML = `<p>${admin.experience}</p>`;
+    document.getElementById("Adminlocation").innerHTML = `<p>${admin.location}</p>`;
+}
+
+const AdminSidebar = document.getElementById("Adminsidebar");
+if(AdminSidebar) {
+    function toggleSidebar() {
+      AdminSidebar.classList.toggle("show");
+    }
+
+    const fields = [
+      'adminname', 'adminId', 'Adminemail', 'Adminrole',
+      'gender', 'bloodgroup', 'Adminphone', 'emergencycontact',
+      'Adminjoining', 'experience', 'Adminlocation'
+    ];
+
+    window.onload = () => {
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '';
+      });
+
+      const currentDate = new Date().toLocaleDateString('en-IN', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+      document.getElementById("currentDate").textContent = currentDate;
+    };
+
+    let isEditing = false;
+    function toggleEdit() {
+      isEditing = !isEditing;
+      fields.forEach(id => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        if (isEditing) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.value = container.textContent;
+          input.className = 'editable-input';
+          container.innerHTML = '';
+          container.appendChild(input);
+        } else {
+          const input = container.querySelector('input');
+          if (input) container.textContent = input.value;
+        }
+      });
+      document.getElementById('editBtn').textContent = isEditing ? 'Save Profile' : 'Edit Profile';
+    }
 }
 
 
@@ -621,31 +607,29 @@ function showmenu(){
     document.getElementsByClassName("dashboard-details")[0].style = "margin-left:0px"
 }
 
-const resultBlock = document.getElementById("resultBlock");
 const dashboardDetails = document.getElementById('dashboardDetails');
 if(dashboardDetails) {
     const menuIcon = document.getElementById('menuIcon');
-const menuBar = document.getElementById('menuBar');
-const closeBar = document.getElementById('closeBar');
+    const menuBar = document.getElementById('menuBar');
+    const closeBar = document.getElementById('closeBar');
 
 
-function showmenu() {
-  menuBar.classList.add('active');
-  dashboardDetails.classList.remove('hidden');
-}
+    function showmenu() {
+    menuBar.classList.add('active');
+    dashboardDetails.classList.remove('hidden');
+    }
 
-function closemenu() {
-  menuBar.classList.remove('active');
-  // Keep dashboard-details visible, don't add 'hidden'
-}
+    function closemenu() {
+    menuBar.classList.remove('active');
+    }
 
-menuIcon.addEventListener('click', () => {
-  showmenu();
-});
+    menuIcon.addEventListener('click', () => {
+    showmenu();
+    });
 
-closeBar.addEventListener('click', () => {
-  closemenu();
-});
+    closeBar.addEventListener('click', () => {
+    closemenu();
+    });
 }
 function searchdetails(){
     // BUS Details
@@ -714,6 +698,4 @@ else{
         document.getElementsByClassName("result")[0].style = "display:flex;"
     console.log(res);
 }
-//  resultBlock.style.transform = "rotateX('-90deg')";
-
 }

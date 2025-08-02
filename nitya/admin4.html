@@ -102,17 +102,17 @@
     </nav>
   </div>
 
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar" id="Adminsidebar">
     <div class="sidebar-header">
       <h2>Admin Panel</h2>
       <span class="close-btn" onclick="toggleSidebar()">×</span>
     </div>
-    <a href="../nitya/admin4.html" class="nav-item active">Profile</a>
-    <a href="../sivaji/myadmin.html" class="nav-item">Dashboard</a>
-    <a href="../meghana/index.html" class="nav-item">Services</a>
-    <a href="../manasa/buss.html" class="nav-item">Buses</a>
-    <a href="../manasa/leave.html" class="nav-item">Leaves</a>
-    <a href="#" class="nav-item" onclick="if(confirm('Do you want to logout?')) { window.location.replace('../karthik/index.html'); }">Logout</a>
+    <a onclick="window.location.replace('../nitya/admin4.html')" class="nav-item active">Profile</a>
+    <a onclick="window.location.replace('../sivaji/myadmin.html')"  class="nav-item">Dashboard</a>
+    <a onclick="window.location.replace('../meghana/index.html')"  class="nav-item">Services</a>
+    <a onclick="window.location.replace('../manasa/buss.html')"  class="nav-item">Buses</a>
+    <a onclick="window.location.replace('../manasa/leave.html')"  class="nav-item">Leaves</a>
+    <a class="nav-item" onclick="if(confirm('Do you want to logout?')) { window.location.replace('../karthik/index.html'); }">Logout</a>
   </div>
 
   <div class="main-content">
@@ -142,49 +142,6 @@
     </section>
   </div>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("show");
-    }
-
-    const fields = [
-      'adminname', 'adminId', 'Adminemail', 'Adminrole',
-      'gender', 'bloodgroup', 'Adminphone', 'emergencycontact',
-      'Adminjoining', 'experience', 'Adminlocation'
-    ];
-
-    window.onload = () => {
-      fields.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = '';
-      });
-
-      const currentDate = new Date().toLocaleDateString('en-IN', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-      document.getElementById("currentDate").textContent = currentDate;
-    };
-
-    let isEditing = false;
-    function toggleEdit() {
-      isEditing = !isEditing;
-      fields.forEach(id => {
-        const container = document.getElementById(id);
-        if (!container) return;
-        if (isEditing) {
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.value = container.textContent;
-          input.className = 'editable-input';
-          container.innerHTML = '';
-          container.appendChild(input);
-        } else {
-          const input = container.querySelector('input');
-          if (input) container.textContent = input.value;
-        }
-      });
-      document.getElementById('editBtn').textContent = isEditing ? 'Save Profile' : 'Edit Profile';
-    }
-  </script>
+  <script src="../deepika/script.js"></script>
 </body>
 </html>
