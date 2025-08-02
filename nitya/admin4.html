@@ -107,12 +107,12 @@
       <h2>Admin Panel</h2>
       <span class="close-btn" onclick="toggleSidebar()">×</span>
     </div>
-    <a onclick="window.location.replace('../nitya/admin4.html')" class="nav-item active">Profile</a>
-    <a onclick="window.location.replace('../sivaji/myadmin.html')"  class="nav-item">Dashboard</a>
-    <a onclick="window.location.replace('../meghana/index.html')"  class="nav-item">Services</a>
-    <a onclick="window.location.replace('../manasa/buss.html')"  class="nav-item">Buses</a>
-    <a onclick="window.location.replace('../manasa/leave.html')"  class="nav-item">Leaves</a>
-    <a class="nav-item" onclick="if(confirm('Do you want to logout?')) { window.location.replace('../karthik/index.html'); }">Logout</a>
+    <a href="../nitya/admin4.html" class="nav-item active">Profile</a>
+    <a href="../sivaji/myadmin.html" class="nav-item">Dashboard</a>
+    <a href="../meghana/index.html" class="nav-item">Services</a>
+    <a href="../manasa/buss.html" class="nav-item">Buses</a>
+    <a href="../manasa/leave.html" class="nav-item">Leaves</a>
+    <a href="#" class="nav-item" onclick="if(confirm('Do you want to logout?')) { window.location.replace('../karthik/index.html'); }">Logout</a>
   </div>
 
   <div class="main-content">
@@ -120,7 +120,8 @@
       <h2 class="welcome-text">Welcome Admin</h2>
       <div class="date-display" id="currentDate"></div>
     </div>
-    <section class="profile-secti  on">
+
+    <section class="profile-section">
       <div class="profile-left">
         <img class="admin-image" src="https://i.pravatar.cc/160?img=68" alt="Admin Image" />
         <button id="editBtn" onclick="toggleEdit()">Edit Profile</button>
