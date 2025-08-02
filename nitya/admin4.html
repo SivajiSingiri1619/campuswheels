@@ -102,7 +102,7 @@
     </nav>
   </div>
 
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar" id="Adminsidebar">
     <div class="sidebar-header">
       <h2>Admin Panel</h2>
       <span class="close-btn" onclick="toggleSidebar()">×</span>
@@ -143,49 +143,6 @@
     </section>
   </div>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("show");
-    }
-
-    const fields = [
-      'adminname', 'adminId', 'Adminemail', 'Adminrole',
-      'gender', 'bloodgroup', 'Adminphone', 'emergencycontact',
-      'Adminjoining', 'experience', 'Adminlocation'
-    ];
-
-    window.onload = () => {
-      fields.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = '';
-      });
-
-      const currentDate = new Date().toLocaleDateString('en-IN', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-      document.getElementById("currentDate").textContent = currentDate;
-    };
-
-    let isEditing = false;
-    function toggleEdit() {
-      isEditing = !isEditing;
-      fields.forEach(id => {
-        const container = document.getElementById(id);
-        if (!container) return;
-        if (isEditing) {
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.value = container.textContent;
-          input.className = 'editable-input';
-          container.innerHTML = '';
-          container.appendChild(input);
-        } else {
-          const input = container.querySelector('input');
-          if (input) container.textContent = input.value;
-        }
-      });
-      document.getElementById('editBtn').textContent = isEditing ? 'Save Profile' : 'Edit Profile';
-    }
-  </script>
+  <script src="../deepika/script.js"></script>
 </body>
 </html>
